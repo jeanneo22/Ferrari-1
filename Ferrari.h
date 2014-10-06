@@ -26,8 +26,11 @@ private:
 	bool motorTurbo;
 	int marchaAtiva;
 	float velocidadeAtual;
+	const static int quantidadePortaTreco;
+	int* dinheiroPortaTreco;
 public:
 	Ferrari(string modelo = "", float velocidadeMaxima = 300, int marchaTotal = 6, const Data& dataFabricacao = Data(25,9,2014));
+	int getQuantidadePortaTreco() const ;
 	Ferrari(const Ferrari& copia);
 	Ferrari(const Data& dataFabricacao, bool isF599XX = false);
 	static void fabricar(Ferrari * fabricar);
@@ -35,10 +38,10 @@ public:
 	void acelerar(float quantidade);
 	void desacelerar();
 	inline void toggleMotorTurbo();
-	
+
 	void imprimirVelocidade() const;
-	void imprimirDados() const;	
-	
+	void imprimirDados() const;
+
 	void setDataFabricacao(const Data& dataFabricacao);
 	void setMarchaAtiva(int marchaAtiva) ;
 	void setMarchaTotal(int marchaTotal) ;
@@ -48,7 +51,7 @@ public:
 	void setQuantidadeFabricada(int quantidadeFabricada) ;
 	void setVelocidadeAtual(float velocidadeAtual) ;
 	void setVelocidadeMaxima(float velocidadeMaxima) ;
-	
+
 	const Data& getDataFabricacao() const ;
 	int getMarchaAtiva() const ;
 	int getMarchaTotal() const ;
@@ -58,6 +61,9 @@ public:
 	int getQuantidadeFabricada() const ;
 	float getVelocidadeAtual() const ;
 	float getVelocidadeMaxima() const ;
+
+	int getDinheiroPortaTreco(int indice) const;
+	int setDinheiroPortaTreco(int valor, int indice);
 
 };
 #endif

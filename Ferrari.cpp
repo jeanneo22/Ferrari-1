@@ -12,6 +12,7 @@ using std::cin;
 
 const Ferrari Ferrari::F599XX = Ferrari("F599XX",330,8,Data());
 int Ferrari::qtdFabricada = 0;
+const int Ferrari::quantidadePortaTreco = 5;
 
 Ferrari::Ferrari(string modelo, float velocidadeMaxima, int marchaTotal, const Data& dataFabricacao)
 {
@@ -48,6 +49,7 @@ Ferrari::Ferrari(const Data& dataFabricacao, bool isF599XX)
 		setMarchaTotal(Ferrari::F599XX.getMarchaTotal());
 		this->marchaAtiva = 0;
 		setDataFabricacao(dataFabricacao);
+		this->dinheiroPortaTreco = new int[quantidadePortaTreco] {0};
 	}
 	else {
 		setModelo("");
@@ -61,18 +63,16 @@ Ferrari::Ferrari(const Data& dataFabricacao, bool isF599XX)
 
 void Ferrari::fabricar(Ferrari *fabricar)
 {
+	delete fabricar;
+	
 	string modelo;
 	float velocidadeMaxima;
 	int totalMarchas;
-	
-	char resp;
-	
+	string resp;
 	int dia,mes,ano;
 	
-	do {
 	cout << "Voce deseja fabricar uma F599XX? <s/n>";
 	cin >> resp;
-	} while (resp != 'n' && resp != 's');
 	
 	cout << "Insira o dia de fabricacao:";
 	cin >> dia;
@@ -81,8 +81,8 @@ void Ferrari::fabricar(Ferrari *fabricar)
 	cout << "Insira o dia de fabricacao:";
 	cin >> ano;
 	
-	if (resp == 's') {
-		fabricar = new Ferrari(Data(dia,mes,ano),true);
+	if (resp == "s") {
+		*fabricar = Ferrari(Data(dia,mes,ano),true);
 	}
 	else {
 		cout << "Insira o modelo:";
@@ -91,7 +91,7 @@ void Ferrari::fabricar(Ferrari *fabricar)
 		cin >> velocidadeMaxima;
 		cout << "Insira o total de marchas:";
 		cin >> totalMarchas;
-		fabricar = new Ferrari(modelo,velocidadeMaxima,totalMarchas,Data(dia,mes,ano));
+		*fabricar = Ferrari(modelo,velocidadeMaxima,totalMarchas,Data(dia,mes,ano));
 	}	
 	
 	Ferrari::qtdFabricada++;
@@ -121,10 +121,10 @@ void Ferrari::toggleMotorTurbo()
 }
 
 void Ferrari::imprimirDados() const{
-	cout << "Modelo: " << modelo;
-	cout << "Velocidade Maxima: " << velocidadeMaxima;
-	cout << "Total de Marchas: " << marchaTotal;
-	cout << "Data fabricacao: " << dataFabricacao.getDia() << "/" << dataFabricacao.getMes() << "/" << dataFabricacao.getAno();
+	cout << "Modelo: " << modelo << std::endl;
+	cout << "Velocidade Maxima: " << velocidadeMaxima << std::endl;
+	cout << "Total de Marchas: " << marchaTotal << std::endl;
+	cout << "Data fabricacao: " << dataFabricacao.getDia() << "/" << dataFabricacao.getMes() << "/" << dataFabricacao.getAno() << std::endl;
 }
 
 void Ferrari::imprimirVelocidade() const{
@@ -147,6 +147,14 @@ void Ferrari::setMarchaTotal(int marchaTotal) {
 
 void Ferrari::setModelo(const string& modelo) {
 	this->modelo = modelo;
+}
+
+int Ferrari::getDinheiroPortaTreco(int indice) const {
+	return dinheiroPortaTreco[indice];
+}
+
+int Ferrari::setDinheiroPortaTreco(int valor, int indice){
+	dinheiroPortaTreco[indice] = valor;
 }
 
 void Ferrari::setVelocidadeMaxima(float velocidadeMaxima) {
@@ -180,4 +188,7 @@ float Ferrari::getVelocidadeAtual() const {
 }
 float Ferrari::getVelocidadeMaxima() const {
 	return velocidadeMaxima;
+}
+int Ferrari::getQuantidadePortaTreco() const {
+	return quantidadePortaTreco;
 }
