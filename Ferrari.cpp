@@ -10,7 +10,6 @@ using std::cin;
 
 #include "Ferrari.h"
 
-vector<Ferrari> Ferrari::fabricadas;
 const Ferrari Ferrari::F599XX = Ferrari("F599XX",330,8,Data());
 int Ferrari::qtdFabricada = 0;
 
@@ -60,7 +59,7 @@ Ferrari::Ferrari(const Data& dataFabricacao, bool isF599XX)
 	}	
 }
 
-const Ferrari & Ferrari::fabricar()
+Ferrari & Ferrari::fabricar()
 {
 	Ferrari retorno;
 	string modelo;
@@ -95,6 +94,8 @@ const Ferrari & Ferrari::fabricar()
 		cin >> totalMarchas;
 		retorno = Ferrari(modelo,velocidadeMaxima,totalMarchas,Data(dia,mes,ano));
 	}	
+	
+	Ferrari::qtdFabricada++;
 	return retorno;
 }
 
@@ -121,6 +122,18 @@ void Ferrari::toggleMotorTurbo()
 	motorTurbo = !motorTurbo;
 }
 
+void Ferrari::imprimirDados() const{
+	cout << "Modelo: " << modelo;
+	cout << "Velocidade Maxima: " << velocidadeMaxima;
+	cout << "Total de Marchas: " << marchaTotal;
+	cout << "Data fabricacao: " << dataFabricacao.getDia() << "/" << dataFabricacao.getMes() << "/" << dataFabricacao.getAno();
+}
+
+void Ferrari::imprimirVelocidade() const{
+	cout << "Velocidade:" << velocidadeAtual << "/" << velocidadeMaxima;
+	cout << "Marcha: " << marchaAtiva << "/" << marchaTotal;
+}
+
 void Ferrari::setDataFabricacao(const Data& dataFabricacao) {
 	this->dataFabricacao = dataFabricacao;
 }
@@ -132,7 +145,6 @@ void Ferrari::setMarchaTotal(int marchaTotal) {
 	else {
 		this->marchaTotal = marchaTotal;
 	}
-	
 }
 
 void Ferrari::setModelo(const string& modelo) {

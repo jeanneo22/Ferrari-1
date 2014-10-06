@@ -18,40 +18,26 @@ class Ferrari
 {
 private:
 	string modelo;
-
 	float velocidadeMaxima;
-
 	int marchaTotal;
-
 	Data dataFabricacao;
-
 	static int qtdFabricada;
-
-	static vector<Ferrari> fabricadas;
-
 	const static Ferrari F599XX;
-
 	bool motorTurbo;
-
 	int marchaAtiva;
-
 	float velocidadeAtual;
 public:
 	Ferrari(string modelo = "", float velocidadeMaxima = 300, int marchaTotal = 6, const Data& dataFabricacao = Data(25,9,2014));
-
 	Ferrari(const Ferrari& copia);
-
 	Ferrari(const Data& dataFabricacao, bool isF599XX = false);
-
-	static const Ferrari & fabricar();
-
+	static Ferrari & fabricar();
 	void mudarMarcha(int marcha);
-
 	void acelerar(float quantidade);
-
 	void desacelerar();
-
 	inline void toggleMotorTurbo();
+	
+	void imprimirVelocidade() const;
+	void imprimirDados() const;	
 	
 	void setDataFabricacao(const Data& dataFabricacao);
 	void setMarchaAtiva(int marchaAtiva) ;
