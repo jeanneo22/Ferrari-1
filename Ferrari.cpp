@@ -59,9 +59,8 @@ Ferrari::Ferrari(const Data& dataFabricacao, bool isF599XX)
 	}	
 }
 
-Ferrari & Ferrari::fabricar()
+void Ferrari::fabricar(Ferrari *fabricar)
 {
-	Ferrari retorno;
 	string modelo;
 	float velocidadeMaxima;
 	int totalMarchas;
@@ -83,7 +82,7 @@ Ferrari & Ferrari::fabricar()
 	cin >> ano;
 	
 	if (resp == 's') {
-		retorno = Ferrari(Data(dia,mes,ano),true);
+		fabricar = new Ferrari(Data(dia,mes,ano),true);
 	}
 	else {
 		cout << "Insira o modelo:";
@@ -92,11 +91,10 @@ Ferrari & Ferrari::fabricar()
 		cin >> velocidadeMaxima;
 		cout << "Insira o total de marchas:";
 		cin >> totalMarchas;
-		retorno = Ferrari(modelo,velocidadeMaxima,totalMarchas,Data(dia,mes,ano));
+		fabricar = new Ferrari(modelo,velocidadeMaxima,totalMarchas,Data(dia,mes,ano));
 	}	
 	
 	Ferrari::qtdFabricada++;
-	return retorno;
 }
 
 void Ferrari::mudarMarcha(int marcha)

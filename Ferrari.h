@@ -30,7 +30,7 @@ public:
 	Ferrari(string modelo = "", float velocidadeMaxima = 300, int marchaTotal = 6, const Data& dataFabricacao = Data(25,9,2014));
 	Ferrari(const Ferrari& copia);
 	Ferrari(const Data& dataFabricacao, bool isF599XX = false);
-	static Ferrari & fabricar();
+	static void fabricar(Ferrari * fabricar);
 	void mudarMarcha(int marcha);
 	void acelerar(float quantidade);
 	void desacelerar();
