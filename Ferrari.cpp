@@ -27,6 +27,11 @@ Ferrari::Ferrari(string modelo, float velocidadeMaxima, int marchaTotal, const D
 	setDataFabricacao(dataFabricacao);
 	
 	setMotorTurbo(false);
+	
+	this->dinheiroPortaTreco = new int[quantidadePortaTreco];
+	for (int i = 0; i < quantidadePortaTreco;i++) {
+		this->dinheiroPortaTreco[i] = 0;
+	}
 }
 
 Ferrari::Ferrari(const Ferrari& ferrari)
@@ -38,6 +43,7 @@ Ferrari::Ferrari(const Ferrari& ferrari)
 	marchaAtiva = ferrari.marchaAtiva;
 	velocidadeAtual = ferrari.velocidadeAtual;
 	motorTurbo = ferrari.motorTurbo;
+	dinheiroPortaTreco = ferrari.dinheiroPortaTreco;
 }
 
 Ferrari::Ferrari(const Data& dataFabricacao, bool isF599XX)
@@ -49,7 +55,10 @@ Ferrari::Ferrari(const Data& dataFabricacao, bool isF599XX)
 		setMarchaTotal(Ferrari::F599XX.getMarchaTotal());
 		this->marchaAtiva = 0;
 		setDataFabricacao(dataFabricacao);
-		this->dinheiroPortaTreco = new int[quantidadePortaTreco] {0};
+		this->dinheiroPortaTreco = new int[quantidadePortaTreco];
+		for (int i = 0; i < quantidadePortaTreco;i++) {
+			this->dinheiroPortaTreco[i] = 0;
+		}
 	}
 	else {
 		setModelo("");
@@ -153,7 +162,7 @@ int Ferrari::getDinheiroPortaTreco(int indice) const {
 	return dinheiroPortaTreco[indice];
 }
 
-int Ferrari::setDinheiroPortaTreco(int valor, int indice){
+void Ferrari::setDinheiroPortaTreco(int valor, int indice){
 	dinheiroPortaTreco[indice] = valor;
 }
 

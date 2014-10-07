@@ -63,7 +63,7 @@ public:
 	float getVelocidadeMaxima() const ;
 
 	int getDinheiroPortaTreco(int indice) const;
-	int setDinheiroPortaTreco(int valor, int indice);
+	void setDinheiroPortaTreco(int valor, int indice);
 
 };
 #endif
