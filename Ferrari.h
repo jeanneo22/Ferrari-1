@@ -30,6 +30,7 @@ private:
 	float velocidadeAtual;
 	const static int quantidadePortaTreco;
 	int* dinheiroPortaTreco;
+	vector<string> nomeTodosDonos;
 public:
 	bool operator== (const Ferrari &right);
 

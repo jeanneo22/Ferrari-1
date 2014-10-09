@@ -37,6 +37,8 @@ Ferrari::Ferrari(string modelo, float velocidadeMaxima, int marchaTotal, const D
 	for (int i = 0; i < quantidadePortaTreco;i++) {
 		this->dinheiroPortaTreco[i] = 0;
 	}
+	
+	this->nomeTodosDonos = vector<string>();
 }
 
 Ferrari::Ferrari(const Ferrari& ferrari)
@@ -112,7 +114,7 @@ void Ferrari::fabricar(Ferrari *fabricar)
 }
 
 bool Ferrari::operator ==(const Ferrari &right) {
-	return (this->modelo == right.modelo) && (this->velocidadeMaxima == right.velocidadeMaxima) && (this->totalMarchas == right.totalMarchas)
+	return (this->modelo == right.modelo) && (this->velocidadeMaxima == right.velocidadeMaxima) && (this->marchaTotal == right.marchaTotal);
 }
 
 void Ferrari::mudarMarcha(int marcha)
