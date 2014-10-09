@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 {
 	Ferrari f1;
 	Ferrari::fabricar(&f1);
-	f1.imprimirDados();
+	std::cout << f1;
 
 	system("pause");
 	return 0;

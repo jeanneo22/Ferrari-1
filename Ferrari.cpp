@@ -14,6 +14,11 @@ const Ferrari Ferrari::F599XX = Ferrari("F599XX",330,8,Data());
 int Ferrari::qtdFabricada = 0;
 const int Ferrari::quantidadePortaTreco = 5;
 
+ostream &operator<< (ostream &output, const Ferrari &ferrari) {
+	output << ferrari.modelo << " (" << ferrari.dataFabricacao.getDia() << "/" << ferrari.dataFabricacao.getMes() << "/" << ferrari.dataFabricacao.getAno() << ")";
+	return output;
+}
+
 Ferrari::Ferrari(string modelo, float velocidadeMaxima, int marchaTotal, const Data& dataFabricacao)
 {
 	setModelo(modelo);
@@ -104,6 +109,10 @@ void Ferrari::fabricar(Ferrari *fabricar)
 	}	
 	
 	Ferrari::qtdFabricada++;
+}
+
+bool Ferrari::operator ==(const Ferrari &right) {
+	return (this->modelo == right.modelo) && (this->velocidadeMaxima == right.velocidadeMaxima) && (this->totalMarchas == right.totalMarchas)
 }
 
 void Ferrari::mudarMarcha(int marcha)

@@ -7,6 +7,7 @@ using std::string;
 #include <vector>
 #include <list>
 #include <iostream>
+using std::ostream;
 #include <assert.h>
 
 #include "Data.h"
@@ -16,6 +17,7 @@ using std::vector;
 
 class Ferrari
 {
+	friend ostream &operator<<( ostream &, const Ferrari &);
 private:
 	string modelo;
 	float velocidadeMaxima;
@@ -29,6 +31,8 @@ private:
 	const static int quantidadePortaTreco;
 	int* dinheiroPortaTreco;
 public:
+	bool operator== (const Ferrari &right);
+
 	Ferrari(string modelo = "", float velocidadeMaxima = 300, int marchaTotal = 6, const Data& dataFabricacao = Data(25,9,2014));
 	int getQuantidadePortaTreco() const ;
 	Ferrari(const Ferrari& copia);
