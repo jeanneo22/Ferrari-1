@@ -50,7 +50,12 @@ Ferrari::Ferrari(const Ferrari& ferrari)
 	marchaAtiva = ferrari.marchaAtiva;
 	velocidadeAtual = ferrari.velocidadeAtual;
 	motorTurbo = ferrari.motorTurbo;
-	dinheiroPortaTreco = ferrari.dinheiroPortaTreco;
+	dinheiroPortaTreco = new int[quantidadePortaTreco];
+	for (int i = 0; i < quantidadePortaTreco;i++) {
+		this->dinheiroPortaTreco[i] = ferrari.dinheiroPortaTreco[i];
+	}
+	
+	this->nomeTodosDonos = vector<string>();
 }
 
 Ferrari::Ferrari(const Data& dataFabricacao, bool isF599XX)
@@ -58,23 +63,24 @@ Ferrari::Ferrari(const Data& dataFabricacao, bool isF599XX)
 	if (isF599XX) {
 		setModelo(Ferrari::F599XX.getModelo());
 		setVelocidadeMaxima(Ferrari::F599XX.getVelocidadeMaxima());
-		this->velocidadeAtual = 0;
-		setMarchaTotal(Ferrari::F599XX.getMarchaTotal());
-		this->marchaAtiva = 0;
-		setDataFabricacao(dataFabricacao);
-		this->dinheiroPortaTreco = new int[quantidadePortaTreco];
-		for (int i = 0; i < quantidadePortaTreco;i++) {
-			this->dinheiroPortaTreco[i] = 0;
-		}
+		setMarchaTotal(Ferrari::F599XX.getMarchaTotal());		
 	}
 	else {
 		setModelo("");
 		setVelocidadeMaxima(300);
-		this->velocidadeAtual = 0;
 		setMarchaTotal(6);
-		this->marchaAtiva = 0;
-		setDataFabricacao(dataFabricacao);
-	}	
+	}
+	
+	this->dinheiroPortaTreco = new int[quantidadePortaTreco];
+	for (int i = 0; i < quantidadePortaTreco;i++) {
+		this->dinheiroPortaTreco[i] = 0;
+	}
+	
+	this->velocidadeAtual = 0;
+	this->marchaAtiva = 0;
+	setDataFabricacao(dataFabricacao);
+	
+	this->nomeTodosDonos = vector<string>();	
 }
 
 void Ferrari::fabricar(Ferrari *fabricar)
@@ -115,6 +121,17 @@ void Ferrari::fabricar(Ferrari *fabricar)
 
 bool Ferrari::operator ==(const Ferrari &right) {
 	return (this->modelo == right.modelo) && (this->velocidadeMaxima == right.velocidadeMaxima) && (this->marchaTotal == right.marchaTotal);
+}
+
+void Ferrari::adicionarDono(const string &nome) {
+	nomeTodosDonos.push_back(nome);
+}
+
+void Ferrari::imprimirDonos() const {
+	for (int i = 0; i < nomeTodosDonos.size(); i++) {
+		cout << nomeTodosDonos[i] << " ";
+	}
+	cout << std::endl;
 }
 
 void Ferrari::mudarMarcha(int marcha)

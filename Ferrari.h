@@ -38,14 +38,16 @@ public:
 	int getQuantidadePortaTreco() const ;
 	Ferrari(const Ferrari& copia);
 	Ferrari(const Data& dataFabricacao, bool isF599XX = false);
-	static void fabricar(Ferrari * fabricar);
+	static void fabricar(Ferrari *fabricar);
 	void mudarMarcha(int marcha);
 	void acelerar(float quantidade);
 	void desacelerar();
 	inline void toggleMotorTurbo();
+	void adicionarDono(const string &nome);
 
 	void imprimirVelocidade() const;
-	void imprimirDados() const;
+	void imprimirDados() const;	
+	void imprimirDonos() const;
 
 	void setDataFabricacao(const Data& dataFabricacao);
 	void setMarchaAtiva(int marchaAtiva) ;
