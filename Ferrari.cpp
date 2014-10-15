@@ -19,7 +19,7 @@ ostream &operator<< (ostream &output, const Ferrari &ferrari) {
 	return output;
 }
 
-Ferrari::Ferrari(string modelo, float velocidadeMaxima, int marchaTotal, const Data& dataFabricacao)
+Ferrari::Ferrari(const string& modelo, float velocidadeMaxima, int marchaTotal, const Data& dataFabricacao)
 {
 	setModelo(modelo);
 	
@@ -38,7 +38,7 @@ Ferrari::Ferrari(string modelo, float velocidadeMaxima, int marchaTotal, const D
 		this->dinheiroPortaTreco[i] = 0;
 	}
 	
-	this->nomeTodosDonos = vector<string>();
+	this->nomeTodosDonos = vector<Pessoa>();
 }
 
 Ferrari::Ferrari(const Ferrari& ferrari)
@@ -55,7 +55,7 @@ Ferrari::Ferrari(const Ferrari& ferrari)
 		this->dinheiroPortaTreco[i] = ferrari.dinheiroPortaTreco[i];
 	}
 	
-	this->nomeTodosDonos = vector<string>();
+	this->nomeTodosDonos = vector<Pessoa>();
 }
 
 Ferrari::Ferrari(const Data& dataFabricacao, bool isF599XX)
@@ -80,7 +80,7 @@ Ferrari::Ferrari(const Data& dataFabricacao, bool isF599XX)
 	this->marchaAtiva = 0;
 	setDataFabricacao(dataFabricacao);
 	
-	this->nomeTodosDonos = vector<string>();	
+	this->nomeTodosDonos = vector<Pessoa>();	
 }
 
 void Ferrari::fabricar(Ferrari *fabricar)
@@ -129,7 +129,8 @@ void Ferrari::adicionarDono(const string &nome) {
 
 void Ferrari::imprimirDonos() const {
 	for (int i = 0; i < nomeTodosDonos.size(); i++) {
-		cout << nomeTodosDonos[i] << " ";
+		
+		cout << ((Pessoa)nomeTodosDonos[i]).getNome() << " ";
 	}
 	cout << std::endl;
 }

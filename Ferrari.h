@@ -11,6 +11,8 @@ using std::ostream;
 #include <assert.h>
 
 #include "Data.h"
+#include "Pessoa.h"
+
 
 #include <vector>
 using std::vector;
@@ -30,15 +32,15 @@ private:
 	float velocidadeAtual;
 	const static int quantidadePortaTreco;
 	int* dinheiroPortaTreco;
-	vector<string> nomeTodosDonos;
+	vector<Pessoa> nomeTodosDonos;
 public:
 	bool operator== (const Ferrari &right);
 
-	Ferrari(string modelo = "", float velocidadeMaxima = 300, int marchaTotal = 6, const Data& dataFabricacao = Data(25,9,2014));
+	Ferrari(const string& modelo = "", float velocidadeMaxima = 300, int marchaTotal = 6, const Data& dataFabricacao = Data(25,9,2014));
 	int getQuantidadePortaTreco() const ;
 	Ferrari(const Ferrari& copia);
 	Ferrari(const Data& dataFabricacao, bool isF599XX = false);
-	static void fabricar(Ferrari *fabricar);
+	static void fabricar(Ferrari  *fabricar);
 	void mudarMarcha(int marcha);
 	void acelerar(float quantidade);
 	void desacelerar();

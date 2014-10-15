@@ -96,6 +96,8 @@
     <File Name="Ferrari.cpp"/>
     <File Name="Data.h"/>
     <File Name="Data.cpp"/>
+    <File Name="Pessoa.h"/>
+    <File Name="Pessoa.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>

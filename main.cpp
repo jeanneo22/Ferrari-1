@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include <iostream>
 #include "Ferrari.h"
 #include <string>
@@ -15,6 +14,7 @@ int main(int argc, char **argv)
 
 	f1.imprimirDonos();
 
-	system("pause");
+	int esperar;
+	std::cin >> esperar;
 	return 0;
 }
