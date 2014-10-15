@@ -45,7 +45,7 @@ public:
 	void acelerar(float quantidade);
 	void desacelerar();
 	inline void toggleMotorTurbo();
-	void adicionarDono(const string &nome);
+	void adicionarDono(const Pessoa &pessoa);
 
 	void imprimirVelocidade() const;
 	void imprimirDados() const;	

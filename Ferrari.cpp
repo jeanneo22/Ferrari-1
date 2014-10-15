@@ -123,8 +123,8 @@ bool Ferrari::operator ==(const Ferrari &right) {
 	return (this->modelo == right.modelo) && (this->velocidadeMaxima == right.velocidadeMaxima) && (this->marchaTotal == right.marchaTotal);
 }
 
-void Ferrari::adicionarDono(const string &nome) {
-	nomeTodosDonos.push_back(nome);
+void Ferrari::adicionarDono(const Pessoa &pessoa) {
+	nomeTodosDonos.push_back(pessoa);
 }
 
 void Ferrari::imprimirDonos() const {
