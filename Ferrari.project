@@ -98,6 +98,8 @@
     <File Name="Data.cpp"/>
     <File Name="Pessoa.h"/>
     <File Name="Pessoa.cpp"/>
+    <File Name="Multa.h"/>
+    <File Name="Multa.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>

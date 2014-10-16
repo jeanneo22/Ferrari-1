@@ -63,7 +63,7 @@ AS       := C:/MinGW-4.8.1/bin/as.exe
 ##
 CodeLiteDir:=C:\Program Files (x86)\CodeLite
 UNIT_TEST_PP_SRC_DIR:=C:\UnitTest++-1.3
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Ferrari.cpp$(ObjectSuffix) $(IntermediateDirectory)/Data.cpp$(ObjectSuffix) $(IntermediateDirectory)/Pessoa.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Ferrari.cpp$(ObjectSuffix) $(IntermediateDirectory)/Data.cpp$(ObjectSuffix) $(IntermediateDirectory)/Pessoa.cpp$(ObjectSuffix) $(IntermediateDirectory)/Multa.cpp$(ObjectSuffix) 
 
 
 
@@ -121,6 +121,14 @@ $(IntermediateDirectory)/Pessoa.cpp$(DependSuffix): Pessoa.cpp
 
 $(IntermediateDirectory)/Pessoa.cpp$(PreprocessSuffix): Pessoa.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Pessoa.cpp$(PreprocessSuffix) "Pessoa.cpp"
+
+$(IntermediateDirectory)/Multa.cpp$(ObjectSuffix): Multa.cpp $(IntermediateDirectory)/Multa.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Felipe/Documents/GitHub/Ferrari/Multa.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Multa.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Multa.cpp$(DependSuffix): Multa.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Multa.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Multa.cpp$(DependSuffix) -MM "Multa.cpp"
+
+$(IntermediateDirectory)/Multa.cpp$(PreprocessSuffix): Multa.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Multa.cpp$(PreprocessSuffix) "Multa.cpp"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

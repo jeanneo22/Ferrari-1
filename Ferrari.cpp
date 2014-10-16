@@ -127,6 +127,10 @@ void Ferrari::adicionarDono(const Pessoa &pessoa) {
 	nomeTodosDonos.push_back(pessoa);
 }
 
+void Ferrari::adicionarMulta(const Multa &multa) {
+	multas.push_back(multa);
+}
+
 void Ferrari::imprimirDonos() const {
 	for (int i = 0; i < nomeTodosDonos.size(); i++) {
 		
@@ -134,6 +138,14 @@ void Ferrari::imprimirDonos() const {
 	}
 	cout << std::endl;
 }
+
+void Ferrari::imprimirMultas() const {
+	for (int i = 0; i < multas.size(); i++) {
+		cout << ((Multa)multas[i]).getRazao() << " Pontos: " << ((Multa)multas[i]).getPontos() << " Valor: " << ((Multa)multas[i]).getValor();
+	}
+	cout << std::endl;
+}
+
 
 void Ferrari::mudarMarcha(int marcha)
 {

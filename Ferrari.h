@@ -12,7 +12,7 @@ using std::ostream;
 
 #include "Data.h"
 #include "Pessoa.h"
-
+#include "Multa.h"
 
 #include <vector>
 using std::vector;
@@ -33,6 +33,7 @@ private:
 	const static int quantidadePortaTreco;
 	int* dinheiroPortaTreco;
 	vector<Pessoa> nomeTodosDonos;
+	vector<Multa> multas;
 public:
 	bool operator== (const Ferrari &right);
 
@@ -46,10 +47,12 @@ public:
 	void desacelerar();
 	inline void toggleMotorTurbo();
 	void adicionarDono(const Pessoa &pessoa);
+	void adicionarMulta(const Multa &multa);
 
 	void imprimirVelocidade() const;
 	void imprimirDados() const;	
 	void imprimirDonos() const;
+	void imprimirMultas() const;
 
 	void setDataFabricacao(const Data& dataFabricacao);
 	void setMarchaAtiva(int marchaAtiva) ;
