@@ -23,6 +23,11 @@ bool Ferrari::operator ==(const Ferrari &right) {
 	return (this->modelo == right.modelo) && (this->velocidadeMaxima == right.velocidadeMaxima) && (this->marchaTotal == right.marchaTotal);
 }
 
+Ferrari::~Ferrari()
+{
+	delete [] dinheiroPortaTreco;
+}
+
 Ferrari::Ferrari(const string& modelo, float velocidadeMaxima, int marchaTotal, const Data& dataFabricacao,const Pessoa& dono)
 {
 	setModelo(modelo);
@@ -130,9 +135,9 @@ void Ferrari::toggleMotorTurbo()
 
 void Ferrari::trocarDonos(Ferrari * f1, Ferrari * f2)
 {
-	Ferrari aux = *f1;
-	*f1 = *f2;
-	*f2 = aux;
+	Pessoa aux = f1->dono;
+	f1->dono = f2->dono;
+	f2->dono = aux;
 }
 
 void Ferrari::imprimirDados() const{
@@ -140,6 +145,9 @@ void Ferrari::imprimirDados() const{
 	cout << "Velocidade Maxima: " << velocidadeMaxima << std::endl;
 	cout << "Total de Marchas: " << marchaTotal << std::endl;
 	cout << "Data fabricacao: " << dataFabricacao.getDia() << "/" << dataFabricacao.getMes() << "/" << dataFabricacao.getAno() << std::endl;
+	cout << "Dono: " << dono.getNome() << std::endl;
+	cout << "Software: " << versaoSoftware << std::endl;
+	cout <<  std::endl;
 }
 
 void Ferrari::imprimirVelocidade() const{

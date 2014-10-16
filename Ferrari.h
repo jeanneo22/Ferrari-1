@@ -38,6 +38,8 @@ private:
 public:
 	bool operator== (const Ferrari &right);
 
+	~Ferrari();
+
 	Ferrari(const string& modelo = "", float velocidadeMaxima = 300, int marchaTotal = 6, const Data& dataFabricacao = Data(25,9,2014), const Pessoa& dono = Pessoa());
 	Ferrari(const Ferrari& copia);
 	Ferrari(const Data& dataFabricacao,const Pessoa& dono, bool isF599XX = false);
@@ -48,13 +50,11 @@ public:
 	void acelerar(float quantidade);
 	void desacelerar();
 	inline void toggleMotorTurbo();
-	void adicionarDono(const Pessoa &pessoa);
 	void adicionarMulta(const Multa &multa);
-	void trocarDonos(Ferrari * f1, Ferrari * f2);
+	static void trocarDonos(Ferrari * f1, Ferrari * f2);
 
 	void imprimirVelocidade() const;
 	void imprimirDados() const;	
-	void imprimirDonos() const;
 	void imprimirMultas() const;
 
 	void setDataFabricacao(const Data& dataFabricacao);
