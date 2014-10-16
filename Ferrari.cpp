@@ -1,25 +1,29 @@
-#include <string>
+
 #include <vector>
-#include <list>
 #include <iostream>
 #include <assert.h>
 #include <stdlib.h>
 
+#include <string>
 using std::cout;
 using std::cin;
 
 #include "Ferrari.h"
 
 const Ferrari Ferrari::F599XX = Ferrari("F599XX",330,8,Data());
-int Ferrari::qtdFabricada = 0;
 const int Ferrari::quantidadePortaTreco = 5;
+string Ferrari::versaoSoftware = "1.0.02";
 
 ostream &operator<< (ostream &output, const Ferrari &ferrari) {
 	output << ferrari.modelo << " (" << ferrari.dataFabricacao.getDia() << "/" << ferrari.dataFabricacao.getMes() << "/" << ferrari.dataFabricacao.getAno() << ")";
 	return output;
 }
 
-Ferrari::Ferrari(const string& modelo, float velocidadeMaxima, int marchaTotal, const Data& dataFabricacao)
+bool Ferrari::operator ==(const Ferrari &right) {
+	return (this->modelo == right.modelo) && (this->velocidadeMaxima == right.velocidadeMaxima) && (this->marchaTotal == right.marchaTotal);
+}
+
+Ferrari::Ferrari(const string& modelo, float velocidadeMaxima, int marchaTotal, const Data& dataFabricacao,const Pessoa& dono)
 {
 	setModelo(modelo);
 	
@@ -38,7 +42,8 @@ Ferrari::Ferrari(const string& modelo, float velocidadeMaxima, int marchaTotal, 
 		this->dinheiroPortaTreco[i] = 0;
 	}
 	
-	this->nomeTodosDonos = vector<Pessoa>();
+	this->dono = dono;
+	this->multas = vector<Multa>();
 }
 
 Ferrari::Ferrari(const Ferrari& ferrari)
@@ -55,10 +60,11 @@ Ferrari::Ferrari(const Ferrari& ferrari)
 		this->dinheiroPortaTreco[i] = ferrari.dinheiroPortaTreco[i];
 	}
 	
-	this->nomeTodosDonos = vector<Pessoa>();
+	this->dono = dono;
+	this->multas = vector<Multa>();
 }
 
-Ferrari::Ferrari(const Data& dataFabricacao, bool isF599XX)
+Ferrari::Ferrari(const Data& dataFabricacao, const Pessoa& dono, bool isF599XX)
 {
 	if (isF599XX) {
 		setModelo(Ferrari::F599XX.getModelo());
@@ -80,72 +86,24 @@ Ferrari::Ferrari(const Data& dataFabricacao, bool isF599XX)
 	this->marchaAtiva = 0;
 	setDataFabricacao(dataFabricacao);
 	
-	this->nomeTodosDonos = vector<Pessoa>();	
+	this->dono = dono;	
+	this->multas = vector<Multa>();
 }
 
-void Ferrari::fabricar(Ferrari *fabricar)
-{
-	delete fabricar;
-	
-	string modelo;
-	float velocidadeMaxima;
-	int totalMarchas;
-	string resp;
-	int dia,mes,ano;
-	
-	cout << "Voce deseja fabricar uma F599XX? <s/n>";
-	cin >> resp;
-	
-	cout << "Insira o dia de fabricacao:";
-	cin >> dia;
-	cout << "Insira o dia de fabricacao:";
-	cin >> mes;
-	cout << "Insira o dia de fabricacao:";
-	cin >> ano;
-	
-	if (resp == "s") {
-		*fabricar = Ferrari(Data(dia,mes,ano),true);
-	}
-	else {
-		cout << "Insira o modelo:";
-		cin >> modelo;
-		cout << "Insira a velocidade maxima:";
-		cin >> velocidadeMaxima;
-		cout << "Insira o total de marchas:";
-		cin >> totalMarchas;
-		*fabricar = Ferrari(modelo,velocidadeMaxima,totalMarchas,Data(dia,mes,ano));
-	}	
-	
-	Ferrari::qtdFabricada++;
-}
-
-bool Ferrari::operator ==(const Ferrari &right) {
-	return (this->modelo == right.modelo) && (this->velocidadeMaxima == right.velocidadeMaxima) && (this->marchaTotal == right.marchaTotal);
-}
-
-void Ferrari::adicionarDono(const Pessoa &pessoa) {
-	nomeTodosDonos.push_back(pessoa);
+void Ferrari::updateSoftware(string versao) {
+	versaoSoftware = versao;
 }
 
 void Ferrari::adicionarMulta(const Multa &multa) {
 	multas.push_back(multa);
 }
 
-void Ferrari::imprimirDonos() const {
-	for (int i = 0; i < nomeTodosDonos.size(); i++) {
-		
-		cout << ((Pessoa)nomeTodosDonos[i]).getNome() << " ";
-	}
-	cout << std::endl;
-}
-
 void Ferrari::imprimirMultas() const {
-	for (int i = 0; i < multas.size(); i++) {
+	for (unsigned int i = 0; i < multas.size(); i++) {
 		cout << ((Multa)multas[i]).getRazao() << " Pontos: " << ((Multa)multas[i]).getPontos() << " Valor: " << ((Multa)multas[i]).getValor();
 	}
 	cout << std::endl;
 }
-
 
 void Ferrari::mudarMarcha(int marcha)
 {
@@ -170,6 +128,13 @@ void Ferrari::toggleMotorTurbo()
 	motorTurbo = !motorTurbo;
 }
 
+void Ferrari::trocarDonos(Ferrari * f1, Ferrari * f2)
+{
+	Ferrari aux = *f1;
+	*f1 = *f2;
+	*f2 = aux;
+}
+
 void Ferrari::imprimirDados() const{
 	cout << "Modelo: " << modelo << std::endl;
 	cout << "Velocidade Maxima: " << velocidadeMaxima << std::endl;
@@ -180,6 +145,15 @@ void Ferrari::imprimirDados() const{
 void Ferrari::imprimirVelocidade() const{
 	cout << "Velocidade:" << velocidadeAtual << "/" << velocidadeMaxima;
 	cout << "Marcha: " << marchaAtiva << "/" << marchaTotal;
+	cout << std::endl;
+}
+
+void Ferrari::setDono(const Pessoa& dono) {
+	this->dono = dono;
+}
+
+Pessoa Ferrari::getDono() const {
+	return dono;
 }
 
 void Ferrari::setDataFabricacao(const Data& dataFabricacao) {

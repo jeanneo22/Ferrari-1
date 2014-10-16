@@ -14,8 +14,6 @@ public:
 	Multa(const string & razao = "", float valor = 100, int pontos = 3);
 	~Multa();
 
-	static Multa cadastrar();
-
 	void setPontos(int pontos) ;
 	void setRazao(const string& razao);
 	void setValor(float valor);

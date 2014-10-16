@@ -7,17 +7,6 @@ Pessoa::Pessoa(const string & nome, int idade)
 	this->idade = idade;
 }
 
-Pessoa Pessoa::cadastrar() {
-	string nome;
-	int idade;
-	std::cout << "Insira o nome";
-	std::cin >> nome;
-	std::cout << "Insira a idade";
-	std::cin >> idade;
-	Pessoa p = Pessoa(nome,idade);
-	return p;
-}
-
 Pessoa::~Pessoa()
 {
 }

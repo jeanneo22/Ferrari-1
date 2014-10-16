@@ -8,7 +8,7 @@ using std::string;
 #include <list>
 #include <iostream>
 using std::ostream;
-#include <assert.h>
+//#include <assert.h>
 
 #include "Data.h"
 #include "Pessoa.h"
@@ -21,33 +21,36 @@ class Ferrari
 {
 	friend ostream &operator<<( ostream &, const Ferrari &);
 private:
+	static string versaoSoftware;
+	const static Ferrari F599XX;
+	const static int quantidadePortaTreco;
+	
 	string modelo;
 	float velocidadeMaxima;
 	int marchaTotal;
 	Data dataFabricacao;
-	static int qtdFabricada;
-	const static Ferrari F599XX;
 	bool motorTurbo;
 	int marchaAtiva;
 	float velocidadeAtual;
-	const static int quantidadePortaTreco;
 	int* dinheiroPortaTreco;
-	vector<Pessoa> nomeTodosDonos;
+	Pessoa dono;
 	vector<Multa> multas;
 public:
 	bool operator== (const Ferrari &right);
 
-	Ferrari(const string& modelo = "", float velocidadeMaxima = 300, int marchaTotal = 6, const Data& dataFabricacao = Data(25,9,2014));
-	int getQuantidadePortaTreco() const ;
+	Ferrari(const string& modelo = "", float velocidadeMaxima = 300, int marchaTotal = 6, const Data& dataFabricacao = Data(25,9,2014), const Pessoa& dono = Pessoa());
 	Ferrari(const Ferrari& copia);
-	Ferrari(const Data& dataFabricacao, bool isF599XX = false);
-	static void fabricar(Ferrari  *fabricar);
+	Ferrari(const Data& dataFabricacao,const Pessoa& dono, bool isF599XX = false);
+	
+	static void updateSoftware(string versao);
+	
 	void mudarMarcha(int marcha);
 	void acelerar(float quantidade);
 	void desacelerar();
 	inline void toggleMotorTurbo();
 	void adicionarDono(const Pessoa &pessoa);
 	void adicionarMulta(const Multa &multa);
+	void trocarDonos(Ferrari * f1, Ferrari * f2);
 
 	void imprimirVelocidade() const;
 	void imprimirDados() const;	
@@ -63,6 +66,7 @@ public:
 	void setQuantidadeFabricada(int quantidadeFabricada) ;
 	void setVelocidadeAtual(float velocidadeAtual) ;
 	void setVelocidadeMaxima(float velocidadeMaxima) ;
+	void setDono(const Pessoa& dono) ;
 
 	const Data& getDataFabricacao() const ;
 	int getMarchaAtiva() const ;
@@ -73,6 +77,8 @@ public:
 	int getQuantidadeFabricada() const ;
 	float getVelocidadeAtual() const ;
 	float getVelocidadeMaxima() const ;
+	int getQuantidadePortaTreco() const ;
+	Pessoa getDono() const;
 
 	int getDinheiroPortaTreco(int indice) const;
 	void setDinheiroPortaTreco(int valor, int indice);

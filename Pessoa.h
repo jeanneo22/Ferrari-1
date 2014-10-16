@@ -13,7 +13,6 @@ private:
 public:
 	Pessoa(const string& nome = "", int idade = 0);
 	~Pessoa();
-	static Pessoa cadastrar();
 	
 	void setIdade(int idade);
 	void setNome(const string& nome);
