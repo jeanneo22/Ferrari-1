@@ -37,6 +37,7 @@ private:
 	vector<Multa> multas;
 public:
 	bool operator== (const Ferrari &right);
+	void operator= (const Ferrari &right);
 
 	~Ferrari();
 

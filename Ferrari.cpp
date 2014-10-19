@@ -23,6 +23,26 @@ bool Ferrari::operator ==(const Ferrari &right) {
 	return (this->modelo == right.modelo) && (this->velocidadeMaxima == right.velocidadeMaxima) && (this->marchaTotal == right.marchaTotal);
 }
 
+void Ferrari::operator =(const Ferrari &right) {
+	dataFabricacao = right.dataFabricacao;
+	modelo = right.modelo;
+	marchaTotal = right.marchaTotal;
+	velocidadeMaxima = right.velocidadeMaxima;
+	marchaAtiva = right.marchaAtiva;
+	velocidadeAtual = right.velocidadeAtual;
+	motorTurbo = right.motorTurbo;
+	dinheiroPortaTreco = new int[quantidadePortaTreco];
+	for (int i = 0; i < quantidadePortaTreco;i++) {
+		this->dinheiroPortaTreco[i] = right.dinheiroPortaTreco[i];
+	}
+	
+	this->dono = right.dono;
+	this->multas = vector<Multa>();
+	for (int i = 0; i < right.multas.size();i++) {
+		this->multas.push_back(right.multas[i]);
+	}
+}
+
 Ferrari::~Ferrari()
 {
 	delete [] dinheiroPortaTreco;
@@ -65,8 +85,11 @@ Ferrari::Ferrari(const Ferrari& ferrari)
 		this->dinheiroPortaTreco[i] = ferrari.dinheiroPortaTreco[i];
 	}
 	
-	this->dono = dono;
+	this->dono = ferrari.dono;
 	this->multas = vector<Multa>();
+	for (int i = 0; i < ferrari.multas.size();i++) {
+		this->multas.push_back(ferrari.multas[i]);
+	}
 }
 
 Ferrari::Ferrari(const Data& dataFabricacao, const Pessoa& dono, bool isF599XX)
