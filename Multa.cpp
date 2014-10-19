@@ -2,7 +2,7 @@
 #include <iostream>
 
 const float Multa::valorMaximo = 517.55f;
-
+const int Multa::tamanhoAlocacao = 10;
 
 ostream &operator<< (ostream &output, const Multa &multa) {
 	output << multa.razao ;
@@ -10,6 +10,12 @@ ostream &operator<< (ostream &output, const Multa &multa) {
 }
 
 bool Multa::operator ==(const Multa &right) {
+	for (int i = 0; i < tamanhoAlocacao; i++) {
+		if (this->alocacaoDinamica[i] != right.alocacaoDinamica[i]) {
+			return false;
+		}
+	}
+	
 	return (this->razao == right.razao) && (this->pontos == right.pontos) && (this->valor == right.valor);
 }
 
@@ -17,13 +23,22 @@ void Multa::operator =(const Multa &right) {
 	this->razao = right.razao;
 	this->pontos = right.pontos;
 	this->valor = right.valor;
+	
+	for (int i = 0; i < tamanhoAlocacao; i++) {
+		this->alocacaoDinamica[i] = right.alocacaoDinamica[i];
+	}
 }
 
 Multa::Multa(const string & razao, float valor, int pontos)
 {
 	this->razao = razao;
-	this->valor = setValor(valor);
+	setValor(valor);
 	this->pontos = pontos;
+	
+	this->alocacaoDinamica = new int[tamanhoAlocacao];
+	for (int i = 0; i < tamanhoAlocacao;i++) {
+		this->alocacaoDinamica[i] = 0;
+	}
 }
 
 Multa::Multa(const Multa & multa)
@@ -31,11 +46,17 @@ Multa::Multa(const Multa & multa)
 	this->razao = multa.razao;
 	this->pontos = multa.pontos;
 	this->valor = multa.valor;
+	
+	this->alocacaoDinamica = new int[tamanhoAlocacao];
+	for (int i = 0; i < tamanhoAlocacao;i++) {
+		this->alocacaoDinamica[i] = multa.alocacaoDinamica[i];
+	}
 }
 
 
 Multa::~Multa()
 {
+	delete [] alocacaoDinamica;
 }
 
 void Multa::setPontos(int pontos) {

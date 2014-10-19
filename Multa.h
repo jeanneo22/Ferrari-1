@@ -25,6 +25,9 @@ private:
 	float valor;
 	int pontos;
 	
+	int* alocacaoDinamica;
+	const static int tamanhoAlocacao;
+	
 	const static float valorMaximo;
 	
 public:
