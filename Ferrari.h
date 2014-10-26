@@ -46,6 +46,7 @@ using std::vector;
 
 class Ferrari : public Carro
 {
+	friend ostream &operator<<( ostream &, const Ferrari &);
 private:
 	static string versaoSoftware;
 	const static Ferrari F599XX;
@@ -54,8 +55,6 @@ private:
 
 public:
 	void operator= (const Ferrari &);
-
-	~Ferrari();
 
 	Ferrari(const string&  = "", float  = 300, int  = 6, const Data& = Data(25,9,2014), const Pessoa& = Pessoa());
 	Ferrari(const Ferrari& );
@@ -66,5 +65,6 @@ public:
 	void setMotorTurbo(bool ) ;
 	bool isMotorTurbo() const ;
 
+	void acelerar(float );
 };
 #endif

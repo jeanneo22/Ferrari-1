@@ -19,8 +19,6 @@ int main(int argc, char **argv)
 	
 	f1.setDinheiroPortaTreco(4,3);
 	cout << f1.getDinheiroPortaTreco(3) << " " << f2.getDinheiroPortaTreco(3) << "\n";
-	
-	
 
 	system("pause");
 	return 0;

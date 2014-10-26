@@ -14,18 +14,19 @@ const Ferrari Ferrari::F599XX = Ferrari("F599XX",330,8,Data());
 
 string Ferrari::versaoSoftware = "1.0.02";
 
-void Ferrari::operator =(const Ferrari &right) {
-//	((Carro)this) = ((Carro)right);
-	motorTurbo = right.motorTurbo;
+ostream &operator<< (ostream &output, const Ferrari &ferrari) {
+	output << "FERRARI:" << ferrari.getModelo() << " (" << ferrari.getDataFabricacao().getDia() << "/" << ferrari.getDataFabricacao().getMes() << "/" << ferrari.getDataFabricacao().getAno() << ")";
+	return output;
 }
 
-Ferrari::~Ferrari()
-{
-	
+void Ferrari::operator =(const Ferrari &right) {
+	this->Carro::operator=(right);
+	motorTurbo = right.motorTurbo;
 }
 
 Ferrari::Ferrari(const string& modelo, float velocidadeMaxima, int marchaTotal, const Data& dataFabricacao,const Pessoa& dono) : Carro(modelo,velocidadeMaxima,marchaTotal,dataFabricacao,dono)
 {
+	setMotorTurbo(false);
 }
 
 Ferrari::Ferrari(const Ferrari& ferrari) : Carro(ferrari)
@@ -46,6 +47,14 @@ Ferrari::Ferrari(const Data& dataFabricacao, const Pessoa& dono, bool isF599XX) 
 
 void Ferrari::updateSoftware(string versao) {
 	versaoSoftware = versao;
+}
+
+void Ferrari::acelerar(float quantidade)
+{
+	if(motorTurbo) {
+		quantidade *= 1.5f;
+	}
+	this->Carro::acelerar(quantidade);
 }
 
 

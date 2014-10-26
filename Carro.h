@@ -42,7 +42,7 @@ public:
 	Carro(const string&  = "", float  = 300, int  = 6, const Data& = Data(25,9,2014), const Pessoa& = Pessoa());
 	Carro(const Carro& );
 	Carro(const Data& ,const Pessoa& );
-	~Carro();
+	virtual ~Carro();
 
 	void mudarMarcha(int );
 	void acelerar(float );
