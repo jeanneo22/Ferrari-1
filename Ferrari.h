@@ -52,10 +52,25 @@ private:
 	const static Ferrari F599XX;
 	
 	bool motorTurbo;
+<<<<<<< HEAD
+=======
+	int marchaAtiva;
+	float velocidadeAtual;
+	int* dinheiroPortaTreco;
+	Pessoa dono;
+	vector<Multa> multas;
+public:
+	/*
+	 * Sobrecarga dos operadores.
+	 */ 
+	bool operator== (const Ferrari &right);
+	void operator= (const Ferrari &right);
+>>>>>>> origin/master
 
 public:
 	void operator= (const Ferrari &);
 
+<<<<<<< HEAD
 	Ferrari(const string&  = "", float  = 300, int  = 6, const Data& = Data(25,9,2014), const Pessoa& = Pessoa());
 	Ferrari(const Ferrari& );
 	Ferrari(const Data& ,const Pessoa& , bool  = false);
@@ -64,6 +79,88 @@ public:
 	inline void toggleMotorTurbo();
 	void setMotorTurbo(bool ) ;
 	bool isMotorTurbo() const ;
+=======
+	/* 
+	 * Construtores
+	 */ 
+	Ferrari(const string& modelo = "", float velocidadeMaxima = 300, int marchaTotal = 6, const Data& dataFabricacao = Data(25,9,2014), const Pessoa& dono = Pessoa());
+	Ferrari(const Ferrari& copia);
+	Ferrari(const Data& dataFabricacao,const Pessoa& dono, bool isF599XX = false);
+	
+	/*
+	 * Fazer o update do software das ferraris. 
+	 */
+	static void updateSoftware(string versao);
+	
+	/*
+	 * Trocar marcha
+	 */ 
+	void mudarMarcha(int marcha);
+	
+	/*
+	 * Acelerar o carro.
+	 */ 
+	void acelerar(float quantidade);
+	
+	/*
+	 * Desacelerar o carro.
+	 */ 
+	void desacelerar();
+	
+	/*
+	 * Setar motor turbo para o valor oposto.
+	 */ 
+	inline void toggleMotorTurbo();
+	
+	/*
+	 * Botar uma multa no carro.
+	 */ 
+	void adicionarMulta(const Multa &multa);
+	
+	/*
+	 * Trocar dois carros de dono.
+	 */ 
+	static void trocarDonos(Ferrari * f1, Ferrari * f2);
+
+	/*
+	 * Funções para imprimir dados diversos.
+	 */ 
+	void imprimirVelocidade() const;
+	void imprimirDados() const;	
+	void imprimirMultas() const;
+
+	/*
+	 * Sets
+	 */ 
+	void setDataFabricacao(const Data& dataFabricacao);
+	void setMarchaAtiva(int marchaAtiva) ;
+	void setMarchaTotal(int marchaTotal) ;
+	void setModelo(const string& modelo) ;
+	void setMotorTurbo(bool motorTurbo) ;
+	void setNumeroChassi() ;
+	void setQuantidadeFabricada(int quantidadeFabricada) ;
+	void setVelocidadeAtual(float velocidadeAtual) ;
+	void setVelocidadeMaxima(float velocidadeMaxima) ;
+	void setDono(const Pessoa& dono) ;
+	void setDinheiroPortaTreco(int valor, int indice);
+
+	/*
+	 * Gets
+	 */ 
+	const Data& getDataFabricacao() const ;
+	int getMarchaAtiva() const ;
+	int getMarchaTotal() const ;
+	const string& getModelo() const ;
+	bool isMotorTurbo() const ;
+	const string& getNumeroChassi() const ;
+	int getQuantidadeFabricada() const ;
+	float getVelocidadeAtual() const ;
+	float getVelocidadeMaxima() const ;
+	int getQuantidadePortaTreco() const ;
+	Pessoa getDono() const;
+	int getDinheiroPortaTreco(int indice) const;
+
+>>>>>>> origin/master
 
 	void acelerar(float );
 };

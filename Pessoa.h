@@ -23,17 +23,27 @@ private:
 	string nome;
 	int idade;
 	int cpf;
-	char* dna;
+	char* dna; //Excesso de criatividade.
 
 	const static int tamanhoDna;
 public:
+	/*
+	 * Sobrecarga de operadores
+	 */ 
 	bool operator== (const Pessoa &right);
 	void operator= (const Pessoa &right);
 
+	/*
+	 * Construtores
+	 */ 
 	Pessoa(const string& nome = "", int idade = 0, int cpf = 0);
 	Pessoa(const Pessoa& pessoa);
 	~Pessoa();
 
+
+	/*
+	 * Gets e Sets
+	 */ 
 	void setIdade(int idade);
 	int getIdade() const ;
 
