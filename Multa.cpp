@@ -39,6 +39,7 @@ Multa::Multa(const string & razao, float valor, int pontos)
 	for (int i = 0; i < tamanhoAlocacao;i++) {
 		this->alocacaoDinamica[i] = 0;
 	}
+	
 }
 
 Multa::Multa(const Multa & multa)
