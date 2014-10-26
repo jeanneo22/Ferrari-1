@@ -100,6 +100,8 @@
     <File Name="Pessoa.cpp"/>
     <File Name="Multa.h"/>
     <File Name="Multa.cpp"/>
+    <File Name="Carro.h"/>
+    <File Name="Carro.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
