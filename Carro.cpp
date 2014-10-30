@@ -139,7 +139,7 @@ void Carro::imprimirDados() const{
 
 void Carro::imprimirVelocidade() const{
 	cout << "Velocidade:" << velocidadeAtual << "/" << velocidadeMaxima;
-	cout << "Marcha: " << marchaAtiva << "/" << marchaTotal;
+	cout << " Marcha: " << marchaAtiva << "/" << marchaTotal;
 	cout << std::endl;
 }
 
