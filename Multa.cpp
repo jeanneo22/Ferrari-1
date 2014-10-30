@@ -9,16 +9,6 @@ ostream &operator<< (ostream &output, const Multa &multa) {
 	return output;
 }
 
-bool Multa::operator ==(const Multa &right) {
-	for (int i = 0; i < tamanhoAlocacao; i++) {
-		if (this->alocacaoDinamica[i] != right.alocacaoDinamica[i]) {
-			return false;
-		}
-	}
-	
-	return (this->razao == right.razao) && (this->pontos == right.pontos) && (this->valor == right.valor);
-}
-
 void Multa::operator =(const Multa &right) {
 	this->razao = right.razao;
 	this->pontos = right.pontos;

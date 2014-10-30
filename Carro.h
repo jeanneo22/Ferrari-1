@@ -22,24 +22,23 @@ class Carro
 {
 	friend ostream &operator<<( ostream &, const Carro &);
 private:
-	const static int quantidadePortaTreco;
+	const static int quantidadeRodas;
 	
 	string modelo;
 	float velocidadeMaxima;
 	int marchaTotal;
 	Data dataFabricacao;
 	
+	int quantidadePortaTreco;
 	int marchaAtiva;
 	float velocidadeAtual;
 	int* dinheiroPortaTreco;
 	Pessoa dono;
 	vector<Multa> multas;
 public:
-	bool operator== (const Carro &);
 	void operator= (const Carro &);
 
-
-	Carro(const string&  = "", float  = 300, int  = 6, const Data& = Data(25,9,2014), const Pessoa& = Pessoa());
+	Carro(const string&  = "", float  = 300, int  = 6, int = 5,const Data& = Data(25,9,2014), const Pessoa& = Pessoa());
 	Carro(const Carro& );
 	Carro(const Data& ,const Pessoa& );
 	virtual ~Carro();

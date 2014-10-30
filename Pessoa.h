@@ -27,7 +27,6 @@ private:
 
 	const static int tamanhoDna;
 public:
-	bool operator== (const Pessoa &right);
 	void operator= (const Pessoa &right);
 
 	Pessoa(const string& nome = "", int idade = 0, int cpf = 0);

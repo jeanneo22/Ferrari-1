@@ -8,16 +8,6 @@ ostream &operator<< (ostream &output, const Pessoa &pessoa) {
 	return output;
 }
 
-bool Pessoa::operator ==(const Pessoa &right) {
-	for (int i = 0; i < tamanhoDna; i++) {
-		if (this->dna[i] != right.dna[i]) {
-			return false;
-		}
-	}
-	
-	return (this->nome == right.nome) && (this->cpf == right.cpf);
-}
-
 void Pessoa::operator =(const Pessoa &right) {
 	this->nome = right.nome;
 	this->idade = right.idade;

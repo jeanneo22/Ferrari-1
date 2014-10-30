@@ -31,7 +31,6 @@ private:
 	const static float valorMaximo;
 	
 public:
-	bool operator== (const Multa &right);
 	void operator= (const Multa &right);
 
 	Multa(const string & razao = "", float valor = 100, int pontos = 3);
