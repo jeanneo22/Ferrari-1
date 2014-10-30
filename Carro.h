@@ -55,11 +55,9 @@ public:
 	void imprimirMultas() const;
 	
 	void setDataFabricacao(const Data&);
-	void setMarchaAtiva(int) ;
 	void setMarchaTotal(int) ;
 	void setModelo(const string& ) ;
 	void setQuantidadeFabricada(int) ;
-	void setVelocidadeAtual(float) ;
 	void setVelocidadeMaxima(float) ;
 	void setDono(const Pessoa&) ;
 	
@@ -71,10 +69,15 @@ public:
 	float getVelocidadeAtual() const ;
 	float getVelocidadeMaxima() const ;
 	int getQuantidadePortaTreco() const ;
+	int getQuantidadeRodas() const;
 	Pessoa getDono() const;
 
 	int getDinheiroPortaTreco(int ) const;
 	void setDinheiroPortaTreco(int , int );
+	
+protected:
+	void setVelocidadeAtual(float) ;
+	void setMarchaAtiva(int) ;
 };
 
 #endif // CARRO_H

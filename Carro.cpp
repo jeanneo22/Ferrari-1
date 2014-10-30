@@ -121,7 +121,8 @@ void Carro::mudarMarcha(int marcha)
 
 void Carro::acelerar(float quantidade)
 {
-	velocidadeAtual = std::min(velocidadeMaxima,velocidadeAtual+quantidade);
+	setVelocidadeAtual(velocidadeAtual+quantidade);
+//	velocidadeAtual = std::min(velocidadeMaxima,velocidadeAtual+quantidade);
 }
 
 void Carro::desacelerar()
@@ -205,6 +206,9 @@ float Carro::getVelocidadeMaxima() const {
 }
 int Carro::getQuantidadePortaTreco() const {
 	return quantidadePortaTreco;
+}
+int Carro::getQuantidadeRodas() const {
+	return quantidadeRodas;
 }
 
 ostream &operator<< (ostream &output, const Carro &carro) {

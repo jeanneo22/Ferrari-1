@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 {
 	Carro *f1 = new Ferrari(Data(21,07,1999),Pessoa("Felipe Eliasquevici",19),true);
 	
-	f1->toggleMotorTurbo();
+	//f1->toggleMotorTurbo();
 	//Ferrari f2 = f1;
 
 	Ferrari::updateSoftware("1.1.00");
