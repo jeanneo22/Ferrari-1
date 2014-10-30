@@ -11,27 +11,6 @@ using std::cin;
 
 const int Carro::quantidadeRodas = 4;
 
-void Carro::operator =(const Carro &right) {
-	dataFabricacao = right.dataFabricacao;
-	modelo = right.modelo;
-	marchaTotal = right.marchaTotal;
-	velocidadeMaxima = right.velocidadeMaxima;
-	marchaAtiva = right.marchaAtiva;
-	velocidadeAtual = right.velocidadeAtual;
-	quantidadePortaTreco = right.quantidadePortaTreco;
-	delete [] dinheiroPortaTreco;
-	dinheiroPortaTreco = new int[quantidadePortaTreco];
-	for (int i = 0; i < quantidadePortaTreco;i++) {
-		this->dinheiroPortaTreco[i] = right.dinheiroPortaTreco[i];
-	}
-	
-	this->dono = right.dono;
-	this->multas = vector<Multa>();
-	for (int i = 0; i < right.multas.size();i++) {
-		this->multas.push_back(right.multas[i]);
-	}
-}
-
 Carro::Carro(const string& modelo, float velocidadeMaxima, int marchaTotal, int quantidadePortaTreco, const Data& dataFabricacao,const Pessoa& dono)
 {
 	setDataFabricacao(dataFabricacao);
@@ -61,7 +40,6 @@ Carro::Carro(const Carro& carro)
 	marchaAtiva = carro.marchaAtiva;
 	velocidadeAtual = carro.velocidadeAtual;
 	quantidadePortaTreco = carro.quantidadePortaTreco;
-	delete [] dinheiroPortaTreco;
 	dinheiroPortaTreco = new int[quantidadePortaTreco];
 	for (int i = 0; i < quantidadePortaTreco;i++) {
 		this->dinheiroPortaTreco[i] = carro.dinheiroPortaTreco[i];
@@ -98,6 +76,27 @@ void Carro::trocarDonos(Carro * c1, Carro * c2)
 	c1->dono = aux;
 }
 
+void Carro::operator =(const Carro &right) {
+	dataFabricacao = right.dataFabricacao;
+	modelo = right.modelo;
+	marchaTotal = right.marchaTotal;
+	velocidadeMaxima = right.velocidadeMaxima;
+	marchaAtiva = right.marchaAtiva;
+	velocidadeAtual = right.velocidadeAtual;
+	quantidadePortaTreco = right.quantidadePortaTreco;
+	delete [] dinheiroPortaTreco;
+	dinheiroPortaTreco = new int[quantidadePortaTreco];
+	for (int i = 0; i < quantidadePortaTreco;i++) {
+		this->dinheiroPortaTreco[i] = right.dinheiroPortaTreco[i];
+	}
+	
+	this->dono = right.dono;
+	this->multas = vector<Multa>();
+	for (int i = 0; i < right.multas.size();i++) {
+		this->multas.push_back(right.multas[i]);
+	}
+}
+
 Carro::~Carro()
 {
 	delete [] dinheiroPortaTreco;
@@ -116,18 +115,17 @@ void Carro::imprimirMultas() const {
 
 void Carro::mudarMarcha(int marcha)
 {
-	this->marchaAtiva = std::min(std::max(0,marcha), marchaTotal);
+	setMarchaAtiva(marcha);
 }
 
 void Carro::acelerar(float quantidade)
 {
 	setVelocidadeAtual(velocidadeAtual+quantidade);
-//	velocidadeAtual = std::min(velocidadeMaxima,velocidadeAtual+quantidade);
 }
 
 void Carro::desacelerar()
 {
-	velocidadeAtual = std::max((float)0,velocidadeAtual-30);
+	setVelocidadeAtual(velocidadeAtual-30);
 }
 
 void Carro::imprimirDados() const{
@@ -179,8 +177,8 @@ void Carro::setDinheiroPortaTreco(int valor, int indice){
 }
 
 void Carro::setVelocidadeMaxima(float velocidadeMaxima) {
-	if (velocidadeMaxima < 200) {
-		this->velocidadeMaxima = 200;
+	if (velocidadeMaxima < 100) {
+		this->velocidadeMaxima = 100;
 	}
 	else {
 		this->velocidadeMaxima = velocidadeMaxima;
@@ -209,6 +207,15 @@ int Carro::getQuantidadePortaTreco() const {
 }
 int Carro::getQuantidadeRodas() const {
 	return quantidadeRodas;
+}
+
+void Carro::setVelocidadeAtual(float velocidade) {
+	this->velocidadeAtual = std::min(std::max(velocidade,0.0f), velocidadeMaxima);
+}
+
+void Carro::setMarchaAtiva(int marcha)
+{
+	this->marchaAtiva = std::min(std::max(0,marcha), marchaTotal);
 }
 
 ostream &operator<< (ostream &output, const Carro &carro) {

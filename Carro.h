@@ -28,15 +28,14 @@ private:
 	float velocidadeMaxima;
 	int marchaTotal;
 	Data dataFabricacao;
-	
 	int quantidadePortaTreco;
 	int marchaAtiva;
-	float velocidadeAtual;
+	
 	int* dinheiroPortaTreco;
 	Pessoa dono;
 	vector<Multa> multas;
 public:
-	void operator= (const Carro &);
+	virtual void operator= (const Carro &);
 
 	Carro(const string&  = "", float  = 300, int  = 6, int = 5,const Data& = Data(25,9,2014), const Pessoa& = Pessoa());
 	Carro(const Carro& );
@@ -44,7 +43,7 @@ public:
 	virtual ~Carro();
 
 	void mudarMarcha(int );
-	void acelerar(float );
+	virtual void acelerar(float );
 	void desacelerar();
 	
 	void adicionarMulta(const Multa &);
@@ -76,6 +75,7 @@ public:
 	void setDinheiroPortaTreco(int , int );
 	
 protected:
+	float velocidadeAtual;
 	void setVelocidadeAtual(float) ;
 	void setMarchaAtiva(int) ;
 };

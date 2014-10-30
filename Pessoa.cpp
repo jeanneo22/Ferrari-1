@@ -3,20 +3,6 @@
 
 const int Pessoa::tamanhoDna = 10;
 
-ostream &operator<< (ostream &output, const Pessoa &pessoa) {
-	output << pessoa.nome ;
-	return output;
-}
-
-void Pessoa::operator =(const Pessoa &right) {
-	this->nome = right.nome;
-	this->idade = right.idade;
-	this->cpf = right.cpf;
-	for (int i = 0; i < tamanhoDna;i++) {
-		this->dna[i] = right.dna[i];
-	}
-}
-
 Pessoa::Pessoa(const string & nome, int idade, int cpf)
 {
 	this->nome = nome;
@@ -42,6 +28,15 @@ Pessoa::Pessoa(const Pessoa & pessoa)
 Pessoa::~Pessoa()
 {
 	delete [] dna;
+}
+
+void Pessoa::operator =(const Pessoa &right) {
+	this->nome = right.nome;
+	this->idade = right.idade;
+	this->cpf = right.cpf;
+	for (int i = 0; i < tamanhoDna;i++) {
+		this->dna[i] = right.dna[i];
+	}
 }
 
 const string& Pessoa::getNome() const {
@@ -82,4 +77,10 @@ char Pessoa::getDnaNoIndice(int indice)
 	if (indice >= 0 && indice < tamanhoDna)
 		return dna[indice];
 	return 0;
+}
+
+
+ostream &operator<< (ostream &output, const Pessoa &pessoa) {
+	output << pessoa.nome ;
+	return output;
 }

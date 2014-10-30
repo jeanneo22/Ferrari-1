@@ -12,16 +12,6 @@ using std::cin;
 
 string Ferrari::versaoSoftware = "1.0.02";
 
-ostream &operator<< (ostream &output, const Ferrari &ferrari) {
-	output << "FERRARI:" << ((Carro)(ferrari));
-	return output;
-}
-
-void Ferrari::operator =(const Ferrari &right) {
-	this->Carro::operator=(right);
-	motorTurbo = right.motorTurbo;
-}
-
 Ferrari::Ferrari(const string& modelo, float velocidadeMaxima, int marchaTotal, int quantidadePortaTreco, const Data& dataFabricacao,const Pessoa& dono) : Carro(modelo,velocidadeMaxima,marchaTotal,quantidadePortaTreco,dataFabricacao,dono)
 {
 	setMotorTurbo(false);
@@ -47,12 +37,15 @@ void Ferrari::updateSoftware(string versao) {
 	versaoSoftware = versao;
 }
 
+void Ferrari::operator =(const Ferrari &right) {
+	this->Carro::operator=(right);
+	motorTurbo = right.motorTurbo;
+}
+
 void Ferrari::acelerar(float quantidade)
 {
-	if(motorTurbo) {
-		quantidade *= 1.5f;
-	}
-	this->Carro::acelerar(quantidade);
+	if (motorTurbo)	quantidade *= 1.5f;
+	setVelocidadeAtual(velocidadeAtual+quantidade);
 }
 
 void Ferrari::setMotorTurbo(bool motorTurbo) {
@@ -61,4 +54,9 @@ void Ferrari::setMotorTurbo(bool motorTurbo) {
 
 bool Ferrari::isMotorTurbo() const {
 	return motorTurbo;
+}
+
+ostream &operator<< (ostream &output, const Ferrari &ferrari) {
+	output << "FERRARI:" << static_cast<Carro>(ferrari);
+	return output;
 }
