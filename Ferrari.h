@@ -49,7 +49,10 @@ class Ferrari : public Carro
 	friend ostream &operator<<( ostream &, const Ferrari &);
 private:
 	static string versaoSoftware;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> origin/Herança
 	bool motorTurbo;
 	int marchaAtiva;
 	float velocidadeAtual;
@@ -65,14 +68,18 @@ public:
 public:
 	void operator= (const Ferrari &);
 
-	Ferrari(const string&  = "", float  = 300, int  = 6, const Data& = Data(25,9,2014), const Pessoa& = Pessoa());
+	Ferrari(const string&  = "", float  = 300, int  = 6, int = 5, const Data& = Data(25,9,2014), const Pessoa& = Pessoa());
 	Ferrari(const Ferrari& );
 	Ferrari(const Data& ,const Pessoa& , bool  = false);
 	
 	static void updateSoftware(string );	
-	inline void toggleMotorTurbo();
+	inline void toggleMotorTurbo() { setMotorTurbo(!motorTurbo); };
+	
+	void acelerar(float );
+	
 	void setMotorTurbo(bool ) ;
 	bool isMotorTurbo() const ;
+<<<<<<< HEAD
 	/* 
 	 * Construtores
 	 */ 
@@ -112,5 +119,7 @@ public:
 	bool isMotorTurbo() const ;
 
 	void acelerar(float );
+=======
+>>>>>>> origin/Herança
 };
 #endif

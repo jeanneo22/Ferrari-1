@@ -27,12 +27,17 @@ private:
 	
 	// Falta de criatividade 1
 	int* alocacaoDinamica;
+<<<<<<< HEAD
 	// Falta de criatividade 2
 	const static int tamanhoAlocacao;
+=======
+	int tamanhoAlocacao;
+>>>>>>> origin/Herança
 	
 	const static float valorMaximo;
 	
 public:
+<<<<<<< HEAD
 	/* 
 	 * Sobrecarga de operadores.
 	 */ 
@@ -43,6 +48,11 @@ public:
 	 * Construtores
 	 */ 
 	Multa(const string & razao = "", float valor = 100, int pontos = 3);
+=======
+	void operator= (const Multa &right);
+
+	Multa(const string &  = "", float  = 100, int  = 3, int = 5);
+>>>>>>> origin/Herança
 	Multa(const Multa& multa);
 	~Multa();
 

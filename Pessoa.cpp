@@ -1,41 +1,16 @@
+
 #include "Pessoa.h"
 #include <iostream>
 
-const int Pessoa::tamanhoDna = 10;
-
-ostream &operator<< (ostream &output, const Pessoa &pessoa) {
-	output << pessoa.nome ;
-	return output;
-}
-
-bool Pessoa::operator ==(const Pessoa &right) {
-	for (int i = 0; i < tamanhoDna; i++) {
-		if (this->dna[i] != right.dna[i]) {
-			return false;
-		}
-	}
-	
-	return (this->nome == right.nome) && (this->cpf == right.cpf);
-}
-
-void Pessoa::operator =(const Pessoa &right) {
-	this->nome = right.nome;
-	this->idade = right.idade;
-	this->cpf = right.cpf;
-	for (int i = 0; i < tamanhoDna;i++) {
-		this->dna[i] = right.dna[i];
-	}
-}
+const int Pessoa::maximoMotivos = 6;
 
 Pessoa::Pessoa(const string & nome, int idade, int cpf)
 {
 	this->nome = nome;
 	this->idade = idade;
 	this->cpf = cpf;
-	this->dna = new char[tamanhoDna];
-	for (int i = 0; i < tamanhoDna;i++) {
-		this->dna[i] = 'A';
-	}
+	this->quantidadeMotivos = 0;
+	this->motivosParaComprar = 0;
 }
 
 Pessoa::Pessoa(const Pessoa & pessoa)
@@ -43,15 +18,28 @@ Pessoa::Pessoa(const Pessoa & pessoa)
 	this->nome = pessoa.nome;
 	this->idade = pessoa.idade;
 	this->cpf = pessoa.cpf;
-	this->dna = new char[tamanhoDna];
-	for (int i = 0; i < tamanhoDna;i++) {
-		this->dna[i] = pessoa.dna[i];
+	this->quantidadeMotivos = pessoa.quantidadeMotivos;
+	this->motivosParaComprar = new string[quantidadeMotivos];
+	for (int i = 0; i < quantidadeMotivos;i++) {
+		this->motivosParaComprar[i] = pessoa.motivosParaComprar[i];
 	}
 }
 
 Pessoa::~Pessoa()
 {
-	delete [] dna;
+	delete [] motivosParaComprar;
+}
+
+void Pessoa::operator =(const Pessoa &right) {
+	this->nome = right.nome;
+	this->idade = right.idade;
+	this->cpf = right.cpf;
+	delete [] this->motivosParaComprar;
+	this->quantidadeMotivos = right.quantidadeMotivos;
+	this->motivosParaComprar = new string[quantidadeMotivos];
+	for (int i = 0; i < quantidadeMotivos;i++) {
+		this->motivosParaComprar[i] = right.motivosParaComprar[i];
+	}
 }
 
 const string& Pessoa::getNome() const {
@@ -76,20 +64,35 @@ int Pessoa::getCpf() const {
 	return cpf;
 }
 
-void Pessoa::setDnaNoIndice(char baseNitrogenada, int indice) 
-{
-	if (indice < 0 || indice >= tamanhoDna)
-		return;
+void Pessoa::adicionarMotivo(const string& motivo) {
+	if (quantidadeMotivos >= maximoMotivos) return;
 	
-	if	(baseNitrogenada != 'A' && baseNitrogenada != 'T' && baseNitrogenada != 'G' && baseNitrogenada != 'C')
-		baseNitrogenada = 'A';
-		
-	this->dna[indice] = baseNitrogenada;
+	string* temporario = new string[++quantidadeMotivos];
+	for (int i = 0; i < quantidadeMotivos-1; i++) {
+		temporario[i] = motivosParaComprar[i];
+	}
+	temporario[quantidadeMotivos-1] = motivo;
+	delete [] motivosParaComprar;
+
+	motivosParaComprar = temporario;
 }
 
-char Pessoa::getDnaNoIndice(int indice) 
-{
-	if (indice >= 0 && indice < tamanhoDna)
-		return dna[indice];
-	return 0;
+
+string Pessoa::getMotivoNoIndice(int indice) {
+	if (indice >= 0 && indice < quantidadeMotivos) {
+		return motivosParaComprar[indice];
+	}
+	return "";
+}
+
+void Pessoa::imprimirMotivos() {
+	for (int i = 0; i < quantidadeMotivos; i++) {
+		std::cout << motivosParaComprar[i] << "\n";
+	}
+}
+
+
+ostream &operator<< (ostream &output, const Pessoa &pessoa) {
+	output << pessoa.nome ;
+	return output;
 }

@@ -9,42 +9,17 @@ using std::cin;
 
 #include "Carro.h"
 
-const int Carro::quantidadePortaTreco = 5;
+const int Carro::quantidadeRodas = 4;
 
-ostream &operator<< (ostream &output, const Carro &carro) {
-	output << carro.modelo << " (" << carro.dataFabricacao.getDia() << "/" << carro.dataFabricacao.getMes() << "/" << carro.dataFabricacao.getAno() << ")";
-	return output;
-}
-
-bool Carro::operator ==(const Carro &right) {
-	return (this->modelo == right.modelo) && (this->velocidadeMaxima == right.velocidadeMaxima) && (this->marchaTotal == right.marchaTotal);
-}
-
-void Carro::operator =(const Carro &right) {
-	dataFabricacao = right.dataFabricacao;
-	modelo = right.modelo;
-	marchaTotal = right.marchaTotal;
-	velocidadeMaxima = right.velocidadeMaxima;
-	marchaAtiva = right.marchaAtiva;
-	velocidadeAtual = right.velocidadeAtual;
-	dinheiroPortaTreco = new int[quantidadePortaTreco];
-	for (int i = 0; i < quantidadePortaTreco;i++) {
-		this->dinheiroPortaTreco[i] = right.dinheiroPortaTreco[i];
-	}
-	
-	this->dono = right.dono;
-	this->multas = vector<Multa>();
-	for (int i = 0; i < right.multas.size();i++) {
-		this->multas.push_back(right.multas[i]);
-	}
-}
-
-Carro::Carro(const string& modelo, float velocidadeMaxima, int marchaTotal, const Data& dataFabricacao,const Pessoa& dono)
+Carro::Carro(const string& modelo, float velocidadeMaxima, int marchaTotal, int quantidadePortaTreco, const Data& dataFabricacao,const Pessoa& dono)
 {
 	setDataFabricacao(dataFabricacao);
 	setModelo(modelo);
 	setMarchaTotal(marchaTotal);
 	setVelocidadeMaxima(velocidadeMaxima);
+	
+	this->quantidadePortaTreco = std::max(0,quantidadePortaTreco);
+	
 	marchaAtiva = 0;
 	velocidadeAtual = 0;
 	dinheiroPortaTreco = new int[quantidadePortaTreco];
@@ -64,6 +39,7 @@ Carro::Carro(const Carro& carro)
 	velocidadeMaxima = carro.velocidadeMaxima;
 	marchaAtiva = carro.marchaAtiva;
 	velocidadeAtual = carro.velocidadeAtual;
+	quantidadePortaTreco = carro.quantidadePortaTreco;
 	dinheiroPortaTreco = new int[quantidadePortaTreco];
 	for (int i = 0; i < quantidadePortaTreco;i++) {
 		this->dinheiroPortaTreco[i] = carro.dinheiroPortaTreco[i];
@@ -85,6 +61,7 @@ Carro::Carro(const Data& dataFabricacao,const Pessoa& dono)
 	setVelocidadeMaxima(300);
 	marchaAtiva = 0;
 	velocidadeAtual = 0;
+	quantidadePortaTreco = 5;	
 	dinheiroPortaTreco = new int[quantidadePortaTreco];
 	for (int i = 0; i < quantidadePortaTreco;i++) {
 		this->dinheiroPortaTreco[i] = 0;
@@ -92,6 +69,33 @@ Carro::Carro(const Data& dataFabricacao,const Pessoa& dono)
 	this->multas = vector<Multa>();
 }
 
+void Carro::trocarDonos(Carro * c1, Carro * c2)
+{
+	Pessoa aux = c1->dono;
+	c1->dono = c2->dono;
+	c1->dono = aux;
+}
+
+void Carro::operator =(const Carro &right) {
+	dataFabricacao = right.dataFabricacao;
+	modelo = right.modelo;
+	marchaTotal = right.marchaTotal;
+	velocidadeMaxima = right.velocidadeMaxima;
+	marchaAtiva = right.marchaAtiva;
+	velocidadeAtual = right.velocidadeAtual;
+	quantidadePortaTreco = right.quantidadePortaTreco;
+	delete [] dinheiroPortaTreco;
+	dinheiroPortaTreco = new int[quantidadePortaTreco];
+	for (int i = 0; i < quantidadePortaTreco;i++) {
+		this->dinheiroPortaTreco[i] = right.dinheiroPortaTreco[i];
+	}
+	
+	this->dono = right.dono;
+	this->multas = vector<Multa>();
+	for (int i = 0; i < right.multas.size();i++) {
+		this->multas.push_back(right.multas[i]);
+	}
+}
 
 Carro::~Carro()
 {
@@ -111,24 +115,17 @@ void Carro::imprimirMultas() const {
 
 void Carro::mudarMarcha(int marcha)
 {
-	this->marchaAtiva = std::min(std::max(0,marcha), marchaTotal);
+	setMarchaAtiva(marcha);
 }
 
 void Carro::acelerar(float quantidade)
 {
-	velocidadeAtual = std::min(velocidadeMaxima,velocidadeAtual+quantidade);
+	setVelocidadeAtual(velocidadeAtual+quantidade);
 }
 
 void Carro::desacelerar()
 {
-	velocidadeAtual = std::max((float)0,velocidadeAtual-30);
-}
-
-void Carro::trocarDonos(Carro * c1, Carro * c2)
-{
-	Pessoa aux = c1->dono;
-	c1->dono = c2->dono;
-	c1->dono = aux;
+	setVelocidadeAtual(velocidadeAtual-30);
 }
 
 void Carro::imprimirDados() const{
@@ -142,7 +139,7 @@ void Carro::imprimirDados() const{
 
 void Carro::imprimirVelocidade() const{
 	cout << "Velocidade:" << velocidadeAtual << "/" << velocidadeMaxima;
-	cout << "Marcha: " << marchaAtiva << "/" << marchaTotal;
+	cout << " Marcha: " << marchaAtiva << "/" << marchaTotal;
 	cout << std::endl;
 }
 
@@ -180,8 +177,8 @@ void Carro::setDinheiroPortaTreco(int valor, int indice){
 }
 
 void Carro::setVelocidadeMaxima(float velocidadeMaxima) {
-	if (velocidadeMaxima < 200) {
-		this->velocidadeMaxima = 200;
+	if (velocidadeMaxima < 100) {
+		this->velocidadeMaxima = 100;
 	}
 	else {
 		this->velocidadeMaxima = velocidadeMaxima;
@@ -207,4 +204,21 @@ float Carro::getVelocidadeMaxima() const {
 }
 int Carro::getQuantidadePortaTreco() const {
 	return quantidadePortaTreco;
+}
+int Carro::getQuantidadeRodas() const {
+	return quantidadeRodas;
+}
+
+void Carro::setVelocidadeAtual(float velocidade) {
+	this->velocidadeAtual = std::min(std::max(velocidade,0.0f), velocidadeMaxima);
+}
+
+void Carro::setMarchaAtiva(int marcha)
+{
+	this->marchaAtiva = std::min(std::max(0,marcha), marchaTotal);
+}
+
+ostream &operator<< (ostream &output, const Carro &carro) {
+	output << carro.modelo << " (" << carro.dataFabricacao.getDia() << "/" << carro.dataFabricacao.getMes() << "/" << carro.dataFabricacao.getAno() << ")";
+	return output;
 }
