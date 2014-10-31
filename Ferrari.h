@@ -60,9 +60,10 @@ public:
 	
 	static void updateSoftware(string );	
 	inline void toggleMotorTurbo() { setMotorTurbo(!motorTurbo); };
+	
+	void acelerar(float );
+	
 	void setMotorTurbo(bool ) ;
 	bool isMotorTurbo() const ;
-
-	void acelerar(float );
 };
 #endif

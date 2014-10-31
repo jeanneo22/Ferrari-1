@@ -34,6 +34,10 @@ public:
 	Pessoa(const Pessoa& );
 	~Pessoa();
 
+	void adicionarMotivo(const string& );
+	string getMotivoNoIndice(int indice);
+	void imprimirMotivos();
+
 	void setIdade(int idade);
 	int getIdade() const ;
 
@@ -42,10 +46,7 @@ public:
 
 	void setCpf(int cpf);
 	int getCpf() const ;
-
-	void adicionarMotivo(const string& );
-	string getMotivoNoIndice(int indice);
-	void imprimirMotivos();
+	
 };
 
 #endif // PESSOA_H

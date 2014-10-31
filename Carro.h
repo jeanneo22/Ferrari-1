@@ -42,13 +42,12 @@ public:
 	Carro(const Data& ,const Pessoa& );
 	virtual ~Carro();
 
+	static void trocarDonos(Carro * , Carro * );
+
 	void mudarMarcha(int );
 	virtual void acelerar(float );
 	void desacelerar();
-	
 	void adicionarMulta(const Multa &);
-	static void trocarDonos(Carro * , Carro * );
-
 	void imprimirVelocidade() const;
 	void imprimirDados() const;	
 	void imprimirMultas() const;
