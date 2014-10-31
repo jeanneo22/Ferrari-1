@@ -49,22 +49,7 @@ class Ferrari : public Carro
 	friend ostream &operator<<( ostream &, const Ferrari &);
 private:
 	static string versaoSoftware;
-<<<<<<< HEAD
-	
-=======
->>>>>>> origin/Herança
 	bool motorTurbo;
-	int marchaAtiva;
-	float velocidadeAtual;
-	Pessoa dono;
-	vector<Multa> multas;
-public:
-	/*
-	 * Sobrecarga dos operadores.
-	 */ 
-	bool operator== (const Ferrari &right);
-	void operator= (const Ferrari &right);
-
 public:
 	void operator= (const Ferrari &);
 
@@ -79,47 +64,5 @@ public:
 	
 	void setMotorTurbo(bool ) ;
 	bool isMotorTurbo() const ;
-<<<<<<< HEAD
-	/* 
-	 * Construtores
-	 */ 
-	Ferrari(const string& modelo = "", float velocidadeMaxima = 300, int marchaTotal = 6, const Data& dataFabricacao = Data(25,9,2014), const Pessoa& dono = Pessoa());
-	Ferrari(const Ferrari& copia);
-	Ferrari(const Data& dataFabricacao,const Pessoa& dono, bool isF599XX = false);
-	
-	/*
-	 * Fazer o update do software das ferraris. 
-	 */
-	static void updateSoftware(string versao);
-	
-	/*
-	 * Acelerar o carro.
-	 */ 
-	void acelerar(float quantidade);
-	
-	/*
-	 * Setar motor turbo para o valor oposto.
-	 */ 
-	inline void toggleMotorTurbo();
-
-	/*
-	 * Funções para imprimir dados diversos.
-	 */ 
-	void imprimirVelocidade() const;
-	void imprimirDados() const;	
-	void imprimirMultas() const;
-
-	/*
-	 * Sets
-	 */ 
-	void setMotorTurbo(bool motorTurbo) ;
-	/*
-	 * Gets
-	 */ 
-	bool isMotorTurbo() const ;
-
-	void acelerar(float );
-=======
->>>>>>> origin/Herança
 };
 #endif
