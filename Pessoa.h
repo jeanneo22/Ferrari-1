@@ -23,14 +23,15 @@ private:
 	string nome;
 	int idade;
 	int cpf;
-	char* dna;
-
-	const static int tamanhoDna;
+	
+	string* motivosParaComprar;
+	int quantidadeMotivos;
+	const static int maximoMotivos;
 public:
 	void operator= (const Pessoa &right);
 
-	Pessoa(const string& nome = "", int idade = 0, int cpf = 0);
-	Pessoa(const Pessoa& pessoa);
+	Pessoa(const string& = "", int = 0, int = 0);
+	Pessoa(const Pessoa& );
 	~Pessoa();
 
 	void setIdade(int idade);
@@ -42,9 +43,9 @@ public:
 	void setCpf(int cpf);
 	int getCpf() const ;
 
-	void setDnaNoIndice(char baseNitrogenada, int indice);
-	char getDnaNoIndice(int indice) ;
-	
+	void adicionarMotivo(const string& );
+	string getMotivoNoIndice(int indice);
+	void imprimirMotivos();
 };
 
 #endif // PESSOA_H

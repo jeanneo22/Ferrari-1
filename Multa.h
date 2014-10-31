@@ -26,14 +26,14 @@ private:
 	int pontos;
 	
 	int* alocacaoDinamica;
-	const static int tamanhoAlocacao;
+	int tamanhoAlocacao;
 	
 	const static float valorMaximo;
 	
 public:
 	void operator= (const Multa &right);
 
-	Multa(const string & razao = "", float valor = 100, int pontos = 3);
+	Multa(const string &  = "", float  = 100, int  = 3, int = 5);
 	Multa(const Multa& multa);
 	~Multa();
 
