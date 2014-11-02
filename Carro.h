@@ -21,7 +21,7 @@ using std::vector;
 class Carro
 {
 	friend ostream &operator<<( ostream &, const Carro &);
-private:
+protected:
 	const static int quantidadeRodas;
 	
 	string modelo;
@@ -34,6 +34,9 @@ private:
 	int* dinheiroPortaTreco;
 	Pessoa dono;
 	vector<Multa> multas;
+	float velocidadeAtual;
+	void setVelocidadeAtual(float) ;
+	void setMarchaAtiva(int) ;
 public:
 	virtual void operator= (const Carro &);
 
@@ -44,7 +47,7 @@ public:
 
 	static void trocarDonos(Carro * , Carro * );
 
-	void mudarMarcha(int );
+	virtual void mudarMarcha(int );
 	virtual void acelerar(float );
 	void desacelerar();
 	void adicionarMulta(const Multa &);
@@ -73,10 +76,6 @@ public:
 	int getDinheiroPortaTreco(int ) const;
 	void setDinheiroPortaTreco(int , int );
 	
-protected:
-	float velocidadeAtual;
-	void setVelocidadeAtual(float) ;
-	void setMarchaAtiva(int) ;
 };
 
 #endif // CARRO_H
