@@ -102,6 +102,8 @@
     <File Name="Multa.cpp"/>
     <File Name="Carro.h"/>
     <File Name="Carro.cpp"/>
+    <File Name="Automovel.h"/>
+    <File Name="Automovel.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>

@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Felipe
-Date                   :=10/31/14
+Date                   :=11/03/14
 CodeLitePath           :="C:\Program Files (x86)\CodeLite"
 LinkerName             :=C:/MinGW-4.8.1/bin/g++.exe 
 SharedObjectLinkerName :=C:/MinGW-4.8.1/bin/g++.exe -shared -fPIC
@@ -63,7 +63,7 @@ AS       := C:/MinGW-4.8.1/bin/as.exe
 ##
 CodeLiteDir:=C:\Program Files (x86)\CodeLite
 UNIT_TEST_PP_SRC_DIR:=C:\UnitTest++-1.3
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Ferrari.cpp$(ObjectSuffix) $(IntermediateDirectory)/Data.cpp$(ObjectSuffix) $(IntermediateDirectory)/Pessoa.cpp$(ObjectSuffix) $(IntermediateDirectory)/Multa.cpp$(ObjectSuffix) $(IntermediateDirectory)/Carro.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Ferrari.cpp$(ObjectSuffix) $(IntermediateDirectory)/Data.cpp$(ObjectSuffix) $(IntermediateDirectory)/Pessoa.cpp$(ObjectSuffix) $(IntermediateDirectory)/Multa.cpp$(ObjectSuffix) $(IntermediateDirectory)/Carro.cpp$(ObjectSuffix) $(IntermediateDirectory)/Automovel.cpp$(ObjectSuffix) 
 
 
 
@@ -137,6 +137,14 @@ $(IntermediateDirectory)/Carro.cpp$(DependSuffix): Carro.cpp
 
 $(IntermediateDirectory)/Carro.cpp$(PreprocessSuffix): Carro.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Carro.cpp$(PreprocessSuffix) "Carro.cpp"
+
+$(IntermediateDirectory)/Automovel.cpp$(ObjectSuffix): Automovel.cpp $(IntermediateDirectory)/Automovel.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Felipe/Documents/GitHub/Ferrari/Automovel.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Automovel.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Automovel.cpp$(DependSuffix): Automovel.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Automovel.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Automovel.cpp$(DependSuffix) -MM "Automovel.cpp"
+
+$(IntermediateDirectory)/Automovel.cpp$(PreprocessSuffix): Automovel.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Automovel.cpp$(PreprocessSuffix) "Automovel.cpp"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

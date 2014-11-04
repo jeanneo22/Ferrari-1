@@ -78,14 +78,14 @@ void Pessoa::adicionarMotivo(const string& motivo) {
 }
 
 
-string Pessoa::getMotivoNoIndice(int indice) {
+string Pessoa::getMotivoNoIndice(int indice)  const{
 	if (indice >= 0 && indice < quantidadeMotivos) {
 		return motivosParaComprar[indice];
 	}
 	return "";
 }
 
-void Pessoa::imprimirMotivos() {
+void Pessoa::imprimirMotivos()const{
 	for (int i = 0; i < quantidadeMotivos; i++) {
 		std::cout << motivosParaComprar[i] << "\n";
 	}

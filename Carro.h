@@ -1,81 +1,42 @@
 #ifndef CARRO_H
 #define CARRO_H
 
-#include <string>
-using std::string;
+#include "Automovel.h"
 
-#include <vector>
-#include <list>
-#include <iostream>
-using std::ostream;
-//#include <assert.h>
-
-#include "Data.h"
-#include "Pessoa.h"
-#include "Multa.h"
-
-#include <vector>
-using std::vector;
-
-
-class Carro
+class Carro : public Automovel
 {
 	friend ostream &operator<<( ostream &, const Carro &);
 private:
 	const static int quantidadeRodas;
-	
-	string modelo;
-	float velocidadeMaxima;
-	int marchaTotal;
-	Data dataFabricacao;
-	int quantidadePortaTreco;
 	int marchaAtiva;
+	int marchaTotal;
 	
-	int* dinheiroPortaTreco;
-	Pessoa dono;
-	vector<Multa> multas;
 public:
 	virtual void operator= (const Carro &);
 
-	Carro(const string&  = "", float  = 300, int  = 6, int = 5,const Data& = Data(25,9,2014), const Pessoa& = Pessoa());
+	Carro(const string&, float  = 300, int  = 6, int = 5,const Data& = Data(25,9,2014), const Pessoa& = Pessoa());
 	Carro(const Carro& );
-	Carro(const Data& ,const Pessoa& );
+	Carro();
 	virtual ~Carro();
 
-	static void trocarDonos(Carro * , Carro * );
-
 	void mudarMarcha(int );
-	virtual void acelerar(float );
-	void desacelerar();
+	
+	virtual void acelerar(float ) = 0;
+	virtual void desacelerar() = 0;
+	
+	virtual void imprimirVelocidade() const;
+	virtual void imprimirDados() const;	
+	
 	void adicionarMulta(const Multa &);
-	void imprimirVelocidade() const;
-	void imprimirDados() const;	
 	void imprimirMultas() const;
 	
-	void setDataFabricacao(const Data&);
 	void setMarchaTotal(int) ;
-	void setModelo(const string& ) ;
-	void setQuantidadeFabricada(int) ;
-	void setVelocidadeMaxima(float) ;
-	void setDono(const Pessoa&) ;
 	
-	const Data& getDataFabricacao() const ;
 	int getMarchaAtiva() const ;
-	int getMarchaTotal() const ;
-	const string& getModelo() const ;
-	int getQuantidadeFabricada() const ;
-	float getVelocidadeAtual() const ;
-	float getVelocidadeMaxima() const ;
-	int getQuantidadePortaTreco() const ;
-	int getQuantidadeRodas() const;
-	Pessoa getDono() const;
-
-	int getDinheiroPortaTreco(int ) const;
-	void setDinheiroPortaTreco(int , int );
-	
+	int getMarchaTotal() const ;	
 protected:
-	float velocidadeAtual;
-	void setVelocidadeAtual(float) ;
+	
+	
 	void setMarchaAtiva(int) ;
 };
 

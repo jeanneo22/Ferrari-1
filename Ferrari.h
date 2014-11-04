@@ -55,12 +55,16 @@ public:
 
 	Ferrari(const string&  = "", float  = 300, int  = 6, int = 5, const Data& = Data(25,9,2014), const Pessoa& = Pessoa());
 	Ferrari(const Ferrari& );
-	Ferrari(const Data& ,const Pessoa& , bool  = false);
+	Ferrari(bool);
 	
 	static void updateSoftware(string );	
 	inline void toggleMotorTurbo() { setMotorTurbo(!motorTurbo); };
 	
 	void acelerar(float );
+	void desacelerar();
+	
+	
+	//void
 	
 	void setMotorTurbo(bool ) ;
 	bool isMotorTurbo() const ;

@@ -1,14 +1,6 @@
-
-#include <vector>
-#include <iostream>
-#include <assert.h>
-#include <stdlib.h>
-
-#include <string>
+#include "Ferrari.h"
 using std::cout;
 using std::cin;
-
-#include "Ferrari.h"
 
 string Ferrari::versaoSoftware = "1.0.02";
 
@@ -22,7 +14,7 @@ Ferrari::Ferrari(const Ferrari& ferrari) : Carro(ferrari)
 	this->motorTurbo = ferrari.motorTurbo;
 }
 
-Ferrari::Ferrari(const Data& dataFabricacao, const Pessoa& dono, bool isF599XX) : Carro(dataFabricacao,dono)
+Ferrari::Ferrari(bool isF599XX) : Carro()
 {
 	if (isF599XX) {
 		setModelo("F599XX");
@@ -38,7 +30,7 @@ void Ferrari::updateSoftware(string versao) {
 }
 
 void Ferrari::operator =(const Ferrari &right) {
-	this->Carro::operator=(right);
+	this->Automovel::operator=(right);
 	motorTurbo = right.motorTurbo;
 }
 
@@ -46,6 +38,11 @@ void Ferrari::acelerar(float quantidade)
 {
 	if (motorTurbo)	quantidade *= 1.5f;
 	setVelocidadeAtual(velocidadeAtual+quantidade);
+}
+
+void Ferrari::desacelerar()
+{
+	setVelocidadeAtual(velocidadeAtual-20);
 }
 
 void Ferrari::setMotorTurbo(bool motorTurbo) {
@@ -57,6 +54,6 @@ bool Ferrari::isMotorTurbo() const {
 }
 
 ostream &operator<< (ostream &output, const Ferrari &ferrari) {
-	output << "FERRARI:" << static_cast<Carro>(ferrari);
+	//output << "FERRARI:" << static_cast<Automovel>(ferrari);
 	return output;
 }

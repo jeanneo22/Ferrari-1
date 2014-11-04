@@ -35,8 +35,8 @@ public:
 	~Pessoa();
 
 	void adicionarMotivo(const string& );
-	string getMotivoNoIndice(int indice);
-	void imprimirMotivos();
+	string getMotivoNoIndice(int indice) const;
+	void imprimirMotivos() const ;
 
 	void setIdade(int idade);
 	int getIdade() const ;

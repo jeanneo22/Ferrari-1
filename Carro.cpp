@@ -1,79 +1,31 @@
-#include <vector>
-#include <iostream>
-#include <assert.h>
-#include <stdlib.h>
-
-#include <string>
-using std::cout;
-using std::cin;
-
 #include "Carro.h"
+
+
 
 const int Carro::quantidadeRodas = 4;
 
-Carro::Carro(const string& modelo, float velocidadeMaxima, int marchaTotal, int quantidadePortaTreco, const Data& dataFabricacao,const Pessoa& dono)
+Carro::Carro(const string& modelo, float velocidadeMaxima, int marchaTotal, int quantidadePortaTreco, const Data& dataFabricacao,const Pessoa& dono) : Automovel(modelo,velocidadeMaxima,quantidadePortaTreco,dataFabricacao,dono)
 {
-	setDataFabricacao(dataFabricacao);
-	setModelo(modelo);
-	setMarchaTotal(marchaTotal);
-	setVelocidadeMaxima(velocidadeMaxima);
-	
-	this->quantidadePortaTreco = std::max(0,quantidadePortaTreco);
-	
 	marchaAtiva = 0;
-	velocidadeAtual = 0;
-	dinheiroPortaTreco = new int[quantidadePortaTreco];
-	for (int i = 0; i < quantidadePortaTreco;i++) {
-		this->dinheiroPortaTreco[i] = 0;
-	}
-	
-	this->dono = dono;
 	this->multas = vector<Multa>();
 }
 
-Carro::Carro(const Carro& carro) 
+Carro::Carro(const Carro& carro) : Automovel(carro)
 {
-	dataFabricacao = carro.dataFabricacao;
-	modelo = carro.modelo;
 	marchaTotal = carro.marchaTotal;
-	velocidadeMaxima = carro.velocidadeMaxima;
 	marchaAtiva = carro.marchaAtiva;
-	velocidadeAtual = carro.velocidadeAtual;
-	quantidadePortaTreco = carro.quantidadePortaTreco;
-	dinheiroPortaTreco = new int[quantidadePortaTreco];
-	for (int i = 0; i < quantidadePortaTreco;i++) {
-		this->dinheiroPortaTreco[i] = carro.dinheiroPortaTreco[i];
-	}
-	
-	this->dono = carro.dono;
+
 	this->multas = vector<Multa>();
 	for (int i = 0; i < carro.multas.size();i++) {
 		this->multas.push_back(carro.multas[i]);
 	}
 }
 
-Carro::Carro(const Data& dataFabricacao,const Pessoa& dono)
+Carro::Carro() : Automovel()
 {
-	setDataFabricacao(dataFabricacao);
-	setDono(dono);
-	setModelo("");
-	setMarchaTotal(6);
-	setVelocidadeMaxima(300);
+	marchaTotal = 5;
 	marchaAtiva = 0;
-	velocidadeAtual = 0;
-	quantidadePortaTreco = 5;	
-	dinheiroPortaTreco = new int[quantidadePortaTreco];
-	for (int i = 0; i < quantidadePortaTreco;i++) {
-		this->dinheiroPortaTreco[i] = 0;
-	}
 	this->multas = vector<Multa>();
-}
-
-void Carro::trocarDonos(Carro * c1, Carro * c2)
-{
-	Pessoa aux = c1->dono;
-	c1->dono = c2->dono;
-	c1->dono = aux;
 }
 
 void Carro::operator =(const Carro &right) {
@@ -143,18 +95,6 @@ void Carro::imprimirVelocidade() const{
 	cout << std::endl;
 }
 
-void Carro::setDono(const Pessoa& dono) {
-	this->dono = dono;
-}
-
-Pessoa Carro::getDono() const {
-	return dono;
-}
-
-void Carro::setDataFabricacao(const Data& dataFabricacao) {
-	this->dataFabricacao = dataFabricacao;
-}
-
 void Carro::setMarchaTotal(int marchaTotal) {
 	if (marchaTotal < 4) {
 		this->marchaTotal = marchaTotal;		
@@ -164,53 +104,12 @@ void Carro::setMarchaTotal(int marchaTotal) {
 	}
 }
 
-void Carro::setModelo(const string& modelo) {
-	this->modelo = modelo;
-}
 
-int Carro::getDinheiroPortaTreco(int indice) const {
-	return dinheiroPortaTreco[indice];
-}
-
-void Carro::setDinheiroPortaTreco(int valor, int indice){
-	dinheiroPortaTreco[indice] = valor;
-}
-
-void Carro::setVelocidadeMaxima(float velocidadeMaxima) {
-	if (velocidadeMaxima < 100) {
-		this->velocidadeMaxima = 100;
-	}
-	else {
-		this->velocidadeMaxima = velocidadeMaxima;
-	}	
-}
-const Data& Carro::getDataFabricacao() const {
-	return dataFabricacao;
-}
 int Carro::getMarchaAtiva() const {
 	return marchaAtiva;
 }
 int Carro::getMarchaTotal() const {
 	return marchaTotal;
-}
-const string& Carro::getModelo() const {
-	return modelo;
-}
-float Carro::getVelocidadeAtual() const {
-	return velocidadeAtual;
-}
-float Carro::getVelocidadeMaxima() const {
-	return velocidadeMaxima;
-}
-int Carro::getQuantidadePortaTreco() const {
-	return quantidadePortaTreco;
-}
-int Carro::getQuantidadeRodas() const {
-	return quantidadeRodas;
-}
-
-void Carro::setVelocidadeAtual(float velocidade) {
-	this->velocidadeAtual = std::min(std::max(velocidade,0.0f), velocidadeMaxima);
 }
 
 void Carro::setMarchaAtiva(int marcha)

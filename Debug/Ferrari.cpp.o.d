@@ -1,5 +1,5 @@
 Debug/Ferrari.cpp.o: Ferrari.cpp Ferrari.h Data.h Pessoa.h Multa.h \
- Carro.h
+ Carro.h Automovel.h
 
 Ferrari.h:
 
@@ -10,3 +10,5 @@ Pessoa.h:
 Multa.h:
 
 Carro.h:
+
+Automovel.h:
