@@ -63,7 +63,7 @@ AS       := C:/MinGW-4.8.1/bin/as.exe
 ##
 CodeLiteDir:=C:\Program Files (x86)\CodeLite
 UNIT_TEST_PP_SRC_DIR:=C:\UnitTest++-1.3
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Ferrari.cpp$(ObjectSuffix) $(IntermediateDirectory)/Data.cpp$(ObjectSuffix) $(IntermediateDirectory)/Pessoa.cpp$(ObjectSuffix) $(IntermediateDirectory)/Multa.cpp$(ObjectSuffix) $(IntermediateDirectory)/Carro.cpp$(ObjectSuffix) $(IntermediateDirectory)/Automovel.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Ferrari.cpp$(ObjectSuffix) $(IntermediateDirectory)/Data.cpp$(ObjectSuffix) $(IntermediateDirectory)/Pessoa.cpp$(ObjectSuffix) $(IntermediateDirectory)/Multa.cpp$(ObjectSuffix) $(IntermediateDirectory)/Carro.cpp$(ObjectSuffix) $(IntermediateDirectory)/Automovel.cpp$(ObjectSuffix) $(IntermediateDirectory)/Jipe.cpp$(ObjectSuffix) $(IntermediateDirectory)/Lancer.cpp$(ObjectSuffix) 
 
 
 
@@ -145,6 +145,22 @@ $(IntermediateDirectory)/Automovel.cpp$(DependSuffix): Automovel.cpp
 
 $(IntermediateDirectory)/Automovel.cpp$(PreprocessSuffix): Automovel.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Automovel.cpp$(PreprocessSuffix) "Automovel.cpp"
+
+$(IntermediateDirectory)/Jipe.cpp$(ObjectSuffix): Jipe.cpp $(IntermediateDirectory)/Jipe.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Felipe/Documents/GitHub/Ferrari/Jipe.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Jipe.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Jipe.cpp$(DependSuffix): Jipe.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Jipe.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Jipe.cpp$(DependSuffix) -MM "Jipe.cpp"
+
+$(IntermediateDirectory)/Jipe.cpp$(PreprocessSuffix): Jipe.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Jipe.cpp$(PreprocessSuffix) "Jipe.cpp"
+
+$(IntermediateDirectory)/Lancer.cpp$(ObjectSuffix): Lancer.cpp $(IntermediateDirectory)/Lancer.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Felipe/Documents/GitHub/Ferrari/Lancer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Lancer.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Lancer.cpp$(DependSuffix): Lancer.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Lancer.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Lancer.cpp$(DependSuffix) -MM "Lancer.cpp"
+
+$(IntermediateDirectory)/Lancer.cpp$(PreprocessSuffix): Lancer.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Lancer.cpp$(PreprocessSuffix) "Lancer.cpp"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

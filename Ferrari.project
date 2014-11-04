@@ -104,6 +104,10 @@
     <File Name="Carro.cpp"/>
     <File Name="Automovel.h"/>
     <File Name="Automovel.cpp"/>
+    <File Name="Jipe.h"/>
+    <File Name="Jipe.cpp"/>
+    <File Name="Lancer.h"/>
+    <File Name="Lancer.cpp"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>

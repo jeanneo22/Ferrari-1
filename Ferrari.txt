@@ -1,1 +1,1 @@
-./Debug/main.cpp.o ./Debug/Ferrari.cpp.o ./Debug/Data.cpp.o ./Debug/Pessoa.cpp.o ./Debug/Multa.cpp.o ./Debug/Carro.cpp.o ./Debug/Automovel.cpp.o   
+./Debug/main.cpp.o ./Debug/Ferrari.cpp.o ./Debug/Data.cpp.o ./Debug/Pessoa.cpp.o ./Debug/Multa.cpp.o ./Debug/Carro.cpp.o ./Debug/Automovel.cpp.o ./Debug/Jipe.cpp.o ./Debug/Lancer.cpp.o   

@@ -90,9 +90,6 @@ void Automovel::imprimirVelocidade() const{
 void Automovel::setDono(const Pessoa& dono) {
 	this->dono = dono;
 }
-
-
-
 Pessoa Automovel::getDono() const {
 	return dono;
 }
