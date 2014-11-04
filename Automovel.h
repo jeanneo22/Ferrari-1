@@ -35,8 +35,6 @@ protected:
 	
 	Pessoa dono;
 	
-	vector<Multa> multas;
-	
 	void setVelocidadeAtual(float) ;
 	
 public:

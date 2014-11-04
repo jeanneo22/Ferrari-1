@@ -11,6 +11,8 @@ private:
 	int marchaAtiva;
 	int marchaTotal;
 	
+	vector<Multa> multas;
+	
 public:
 	virtual void operator= (const Carro &);
 

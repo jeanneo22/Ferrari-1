@@ -1,11 +1,10 @@
 #include "Carro.h"
 
-
-
 const int Carro::quantidadeRodas = 4;
 
 Carro::Carro(const string& modelo, float velocidadeMaxima, int marchaTotal, int quantidadePortaTreco, const Data& dataFabricacao,const Pessoa& dono) : Automovel(modelo,velocidadeMaxima,quantidadePortaTreco,dataFabricacao,dono)
 {
+	setMarchaTotal(marchaTotal);
 	marchaAtiva = 0;
 	this->multas = vector<Multa>();
 }
@@ -16,7 +15,7 @@ Carro::Carro(const Carro& carro) : Automovel(carro)
 	marchaAtiva = carro.marchaAtiva;
 
 	this->multas = vector<Multa>();
-	for (int i = 0; i < carro.multas.size();i++) {
+	for (size_t i = 0; i < carro.multas.size();i++) {
 		this->multas.push_back(carro.multas[i]);
 	}
 }
@@ -44,7 +43,7 @@ void Carro::operator =(const Carro &right) {
 	
 	this->dono = right.dono;
 	this->multas = vector<Multa>();
-	for (int i = 0; i < right.multas.size();i++) {
+	for (size_t i = 0; i < right.multas.size();i++) {
 		this->multas.push_back(right.multas[i]);
 	}
 }
