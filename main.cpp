@@ -8,6 +8,8 @@ using std::string;
 #include <stdlib.h>
 
 #include "Ferrari.h"
+#include "Jipe.h"
+#include "Lancer.h"
 #include "Pessoa.h"
 
 int main(int argc, char **argv)
@@ -16,6 +18,7 @@ int main(int argc, char **argv)
 	p1.adicionarMotivo("Gosta de Velocidade");
 	p1.adicionarMotivo("Acha a marca atrativa");
 	Automovel *f1 = new Ferrari(true);
+	f1->setDono(p1);
 	
 	f1->acelerar(60);
 	f1->acelerar(130);
@@ -24,10 +27,20 @@ int main(int argc, char **argv)
 	f1->imprimirVelocidade();
 
 	cout << "Porque o dono comprou a ferrari\n";
-	p1.imprimirMotivos();
+	f1->getDono().imprimirMotivos();
 
 	Ferrari::updateSoftware("1.1.00");
 
 	system("pause");
 	return 0;
+}
+
+void imprimirTudo(const Automovel * automovel) 
+{
+	cout<<"Velocidade Atual\n";
+	f1->imprimirVelocidade();
+	if(typeid(automovel)) {
+		
+	}
+	
 }
