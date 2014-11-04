@@ -62,14 +62,13 @@ public:
 	void setDono(const Pessoa&) ;
 	void setDinheiroPortaTreco(int , int );
 	
-	
 	const Data& getDataFabricacao() const ;
 	const string& getModelo() const ;
 	float getVelocidadeAtual() const ;
 	float getVelocidadeMaxima() const ;
 	int getQuantidadePortaTreco() const ;
 	int getQuantidadeRodas() const;
-	const Pessoa& getDono() const;
+	Pessoa getDono() const;
 	int getDinheiroPortaTreco(int ) const;	
 
 };

@@ -93,7 +93,7 @@ void Automovel::setDono(const Pessoa& dono) {
 
 
 
-const Pessoa& Automovel::getDono() const {
+Pessoa Automovel::getDono() const {
 	return dono;
 }
 

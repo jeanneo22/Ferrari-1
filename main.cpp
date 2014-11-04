@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 	f1->imprimirVelocidade();
 
 	cout << "Porque o dono comprou a ferrari\n";
-	f1->getDono().imprimirMotivos();
+	p1.imprimirMotivos();
 
 	Ferrari::updateSoftware("1.1.00");
 
