@@ -54,6 +54,6 @@ bool Ferrari::isMotorTurbo() const {
 }
 
 ostream &operator<< (ostream &output, const Ferrari &ferrari) {
-	//output << "FERRARI:" << static_cast<Automovel>(ferrari);
+	output << "Ferrari:" << static_cast<const Carro&>(ferrari);
 	return output;
 }

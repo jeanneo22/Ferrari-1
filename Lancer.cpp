@@ -49,6 +49,6 @@ bool Lancer::isControleDrift() const {
 }
 
 ostream &operator<< (ostream &output, const Lancer &lancer) {
-	//output << "Lancer:" << static_cast<Automovel>(lancer);
+	output << "Lancer:" << static_cast<const Carro&>(lancer);
 	return output;
 }

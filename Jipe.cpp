@@ -48,6 +48,6 @@ bool Jipe::isTracaoQuatroRodas() const {
 }
 
 ostream &operator<< (ostream &output, const Jipe &jipe) {
-	//output << "Jipe:" << static_cast<Automovel>(jipe);
+	output << "Jipe:" << static_cast<const Carro&>(jipe);
 	return output;
 }
