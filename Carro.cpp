@@ -80,12 +80,8 @@ void Carro::desacelerar()
 }
 
 void Carro::imprimirDados() const{
-	cout << "Modelo: " << modelo << std::endl;
-	cout << "Velocidade Maxima: " << velocidadeMaxima << std::endl;
-	cout << "Total de Marchas: " << marchaTotal << std::endl;
-	cout << "Data fabricacao: " << dataFabricacao.getDia() << "/" << dataFabricacao.getMes() << "/" << dataFabricacao.getAno() << std::endl;
-	cout << "Dono: " << dono.getNome() << std::endl;
-	cout <<  std::endl;
+	cout << "Carro: \n";
+	Automovel::imprimirDados();
 }
 
 void Carro::imprimirVelocidade() const{
@@ -117,6 +113,6 @@ void Carro::setMarchaAtiva(int marcha)
 }
 
 ostream &operator<< (ostream &output, const Carro &carro) {
-	output << carro.modelo << " (" << carro.dataFabricacao.getDia() << "/" << carro.dataFabricacao.getMes() << "/" << carro.dataFabricacao.getAno() << ")";
+	output << "Carro:" << static_cast<const Automovel&>(carro);
 	return output;
 }

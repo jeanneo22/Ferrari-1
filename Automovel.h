@@ -21,36 +21,25 @@ class Automovel
 {
 	friend ostream &operator<<( ostream &, const Automovel &);
 protected:
-
-
 	string modelo;
-	
 	float velocidadeMaxima;
 	float velocidadeAtual;
-	
 	Data dataFabricacao;
-	
 	int quantidadePortaTreco;
 	int* dinheiroPortaTreco;
-	
 	Pessoa dono;
-	
 	void setVelocidadeAtual(float) ;
-	
 public:
 	virtual void operator= (const Automovel &);
 
 	Automovel(const string&, float  = 300, int = 5,const Data& = Data(25,9,2014), const Pessoa& = Pessoa());
 	Automovel(const Automovel& );
 	Automovel();
-
 	virtual ~Automovel();
 	
 	static void trocarDonos(Automovel * , Automovel * );
-	
 	virtual void acelerar(float ) = 0;
 	virtual void desacelerar() = 0;
-	
 	virtual void imprimirVelocidade() const;
 	virtual void imprimirDados() const;	
 	
@@ -68,7 +57,6 @@ public:
 	int getQuantidadeRodas() const;
 	Pessoa getDono() const;
 	int getDinheiroPortaTreco(int ) const;	
-
 };
 
 #endif // AUTOMOVEL_H

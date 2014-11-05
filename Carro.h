@@ -12,7 +12,6 @@ private:
 	int marchaTotal;
 	
 	vector<Multa> multas;
-	
 public:
 	virtual void operator= (const Carro &);
 
@@ -22,7 +21,6 @@ public:
 	virtual ~Carro();
 
 	void mudarMarcha(int );
-	
 	virtual void acelerar(float ) = 0;
 	virtual void desacelerar() = 0;
 	
@@ -37,8 +35,6 @@ public:
 	int getMarchaAtiva() const ;
 	int getMarchaTotal() const ;	
 protected:
-	
-	
 	void setMarchaAtiva(int) ;
 };
 

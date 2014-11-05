@@ -92,7 +92,6 @@ void imprimirTudo(Automovel* automovel)
 	automovel->acelerar(50);
 	automovel->desacelerar();
 	
-	
 	cout <<"Informacoes gerais\n";
 	automovel->imprimirDados();
 	
@@ -103,5 +102,4 @@ void imprimirTudo(Automovel* automovel)
 	automovel->getDono().imprimirMotivos();
 	
 	cout << "\n";
-	
 }

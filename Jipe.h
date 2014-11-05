@@ -15,7 +15,6 @@ class Jipe : public Carro
 {
 	friend ostream &operator<<( ostream &, const Jipe &);
 private:
-	static string versaoSoftware;
 	bool tracaoQuatroRodas;
 public:
 	void operator= (const Jipe &);
